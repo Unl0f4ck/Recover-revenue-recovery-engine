@@ -16,8 +16,16 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 TOP = {"pyproject.toml", "requirements-dev.txt", "pytest.ini", ".env.example",
-       ".gitignore", ".dockerignore", "Dockerfile", "SPEC.md", "PREREGISTRATION.md", "RESULTS.md"}
+       ".gitignore", ".dockerignore", "Dockerfile"}
 TREES = ("src", "scripts", "tests", "config", "docs", "samples", "ui/control", "data/frozen", ".github")
+# The public copy carries what someone needs to install, connect and operate the
+# system -- nothing else. The research record (SPEC, RESULTS, PREREGISTRATION),
+# the prior-art and gap analyses, and the dated review and demo write-ups are
+# working documents; they stay in the private repository. PUBLIC_README.md is
+# omitted because it is published as README.md, not alongside it.
+DOCS_PRIVATE = {"docs/PUBLIC_README.md", "docs/BUILDATHON.md", "docs/DEMO_RESULTS.md",
+                "docs/FEATURE_GAPS.md", "docs/FINAL_REVIEW.md", "docs/PRIOR_ART.md",
+                "docs/RECOVERY_RATE.md"}
 
 
 def selected(root):
@@ -42,7 +50,8 @@ def prepare(destination, root=ROOT):
     secrets = [v.encode() for k, v in env.items()
                if any(s in k for s in ("KEY_SECRET", "API_KEY", "ADMIN_TOKEN", "TOKEN_SECRET", "WEBHOOK_SECRET"))
                and len(v) >= 8 and "xxxx" not in v.lower()]
-    files = {p.relative_to(root).as_posix(): p.read_bytes() for p in selected(root)}
+    files = {p.relative_to(root).as_posix(): p.read_bytes() for p in selected(root)
+             if p.relative_to(root).as_posix() not in DOCS_PRIVATE}
     files["README.md"] = (root/"docs/PUBLIC_README.md").read_bytes()
     for name, body in files.items():
         if any(secret in body for secret in secrets):
@@ -55,7 +64,9 @@ def prepare(destination, root=ROOT):
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(body)
     manifest = {"file_count": len(files), "files": {n: hashlib.sha256(b).hexdigest() for n, b in files.items()},
-                "excluded": [".git history", ".env", "data/live", "data/console", "data/sim", "ui/data.js", "redirect.local.yaml", "runtime credentials"]}
+                "excluded": [".git history", ".env", "data/live", "data/console", "data/sim", "ui/data.js",
+                             "redirect.local.yaml", "runtime credentials", "research record (SPEC, RESULTS, PREREGISTRATION)",
+                             *sorted(DOCS_PRIVATE)]}
     (destination/"PUBLIC_RELEASE.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     return manifest
 
@@ -107,7 +118,9 @@ def publish(destination, owner, repo):
     git("init", "-b", "main")
     git("config", "user.name", owner)
     git("config", "user.email", f"{user['id']}+{owner}@users.noreply.github.com")
-    git("add", "--", *expected["files"].keys(), "PUBLIC_RELEASE.json")
+    # The manifest stays in the staging directory as the integrity record for
+    # this build; it is not part of what someone clones to run the system.
+    git("add", "--", *expected["files"].keys())
     git("commit", "-m", "Build Recover: bounded Razorpay revenue recovery with verified workflows")
     created = github("POST", "/user/repos", token, {"name": repo, "private": False,
                       "description": "Diagnosis-aware revenue recovery for Razorpay test accounts: bounded campaigns, SMS/email, reconciliation and reproducible evidence.", "auto_init": False})

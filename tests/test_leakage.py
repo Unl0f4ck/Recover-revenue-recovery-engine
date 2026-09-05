@@ -38,14 +38,13 @@ PROTECTED = [
     SRC / "policy.py",
 ]
 
-# NOT in §1.2. Added Day 0 on review: leaking ground truth into the LLM
-# narrator would be fatal and invisible, and the seasonal/merge stages sit
-# squarely on the observation path. Tracked as an open item in WORKLOG.md;
-# tested separately so the spec-mandated invariant stays unambiguous.
+# NOT in §1.2. Added Day 0 on review: the seasonal/merge stages sit squarely on
+# the observation path, and execution acts on what they conclude, so ground
+# truth reaching either would be fatal and invisible. Tracked as an open item in
+# WORKLOG.md; tested separately so the spec-mandated invariant stays unambiguous.
 PROTECTED_EXTENDED = [
     SRC / "seasonal.py",
     SRC / "incident.py",
-    SRC / "explain.py",
     SRC / "execution",
 ]
 

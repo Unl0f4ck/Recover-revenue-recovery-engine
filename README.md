@@ -46,9 +46,9 @@ Open **http://127.0.0.1:8000**. No keys are needed for the batch lab.
 
 ## Evidence and boundaries
 
-The complete regression suite, HTTP integration tests and browser review are
-documented in [the final audit](docs/FINAL_REVIEW.md). Tests use synthetic data
-and mocked outbound provider calls. Run them yourself:
+The regression suite, HTTP integration tests and browser checks all run from a
+clean clone. Tests use synthetic data and mocked outbound provider calls. Run
+them yourself:
 
 ```bash
 python -m pytest -q
@@ -69,17 +69,16 @@ self-service token routes currently belong to the server workspace; native
 notification templates do not automatically contain an unsubscribe URL.
 
 This public source copy intentionally excludes original Git history, `.env`,
-private account ledgers, operational databases and generated customer data.
-The historical research specification and frozen synthetic detector evaluations
-are retained separately from the current application evidence.
+private account ledgers, operational databases and generated customer data. The
+research record behind the detector -- specification, pre-registration and
+frozen evaluations -- is kept in the private repository; this copy carries what
+is needed to install, connect and run the system.
 
 ## Documentation
 
-- [Five-minute pitch and submission checklist](docs/BUILDATHON.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Account connection and messaging](docs/CONNECTIONS.md)
-- [Operations](docs/OPERATIONS.md)
-- [Final review and remaining evidence gaps](docs/FINAL_REVIEW.md)
+- [Architecture](docs/ARCHITECTURE.md) — how the pieces fit together
+- [Account connection and messaging](docs/CONNECTIONS.md) — connect a Razorpay account and configure delivery
+- [Operations](docs/OPERATIONS.md) — running batches, reconciliation and day-to-day operation
 
 Public source is only part of submission. The applicant must supply their own
 pitch video, explain the system and meet the program's eligibility requirements.
