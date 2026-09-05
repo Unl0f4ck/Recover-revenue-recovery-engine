@@ -16,16 +16,20 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 TOP = {"pyproject.toml", "requirements-dev.txt", "pytest.ini", ".env.example",
-       ".gitignore", ".dockerignore", "Dockerfile"}
+       ".gitignore", ".dockerignore", "Dockerfile", "RESULTS.md", "PREREGISTRATION.md"}
 TREES = ("src", "scripts", "tests", "config", "docs", "samples", "ui/control", "data/frozen", ".github")
 # The public copy carries what someone needs to install, connect and operate the
-# system -- nothing else. The research record (SPEC, RESULTS, PREREGISTRATION),
-# the prior-art and gap analyses, and the dated review and demo write-ups are
-# working documents; they stay in the private repository. PUBLIC_README.md is
-# omitted because it is published as README.md, not alongside it.
+# system, plus the evidence for what it achieves and the material that evidence
+# rests on. RESULTS.md is the evidence; PREREGISTRATION.md is what makes it
+# checkable, holding the config and code hashes recorded before the frozen set
+# existed; and RESULTS cites RECOVERY_RATE and the PRIOR_ART survey under it for
+# the recovery-rate argument, so publishing RESULTS without them would leave its
+# own references unresolvable. What stays private is the working record rather
+# than the result: a submission checklist, a dated review and demo write-up, and
+# an internal gap analysis. PUBLIC_README.md is omitted because it is published
+# as README.md, not alongside it.
 DOCS_PRIVATE = {"docs/PUBLIC_README.md", "docs/BUILDATHON.md", "docs/DEMO_RESULTS.md",
-                "docs/FEATURE_GAPS.md", "docs/FINAL_REVIEW.md", "docs/PRIOR_ART.md",
-                "docs/RECOVERY_RATE.md"}
+                "docs/FEATURE_GAPS.md", "docs/FINAL_REVIEW.md"}
 
 
 def selected(root):
