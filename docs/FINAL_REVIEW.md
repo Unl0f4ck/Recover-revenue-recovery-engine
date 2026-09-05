@@ -39,6 +39,7 @@ provider evidence. Existing credentials were used only for read-only smoke check
 | Example webhook secret advertised as a configured capability | Placeholder signing secrets are rejected/disabled rather than enabling a predictable public callback. |
 | Local tests relied on real account credentials | Subscription entitlement/fallback tests now inject provider responses; the public release can test without `.env`. |
 | Quick demo could display a different form seed than the submitted job | Progress rendering synchronizes the form with the job's actual configuration. |
+| Clean CI could not import the statistical diagnosis engine | Tigramite is now an explicit, version-pinned runtime dependency rather than relying on a developer's installed environment. |
 
 ## Verification evidence
 
@@ -75,7 +76,7 @@ provider evidence. Existing credentials were used only for read-only smoke check
 | Reconcile and stop | Implemented via signed webhooks and polling, with regression coverage. |
 | Batch recovery evidence | Synthetic engine evidence is available; not proven commercial uplift. A recorded provider-backed test cohort would strengthen the submission. |
 | Meaningful AI | Gemini-assisted reply interpretation and statistical diagnosis. Mandate execution and behavioral recovery remain simulated. |
-| Public repo and architecture | A clean source-only release is prepared separately from private runtime data. Publication status must be verified, not assumed. |
+| Public repo and architecture | Published and public-access verified at [Unl0f4ck/recover-revenue-recovery](https://github.com/Unl0f4ck/recover-revenue-recovery). Private runtime data and original local history were excluded. |
 | Five-minute pitch and applicant eligibility | Must be completed/confirmed by the applicant. |
 
 ## Remaining limitations — do not hide these

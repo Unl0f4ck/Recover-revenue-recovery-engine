@@ -11,6 +11,9 @@ secrets/
 
 # Disposable dev data. data/frozen/ IS committed (SPEC §13).
 data/dev/
+# Account records and generated dashboard projections must remain local.
+data/live/
+ui/data.js
 # The simulated batch. Regenerable exactly from its seed
 # (`python -m scripts.simulate_batch`), so committing three thousand generated
 # ledger rows would add weight without adding evidence -- and a synthetic
