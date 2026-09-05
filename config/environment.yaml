@@ -1,0 +1,124 @@
+# HIDDEN action-effect environment. SPEC §10.
+#
+# NEVER readable by src/attribution/, src/detector/ or src/policy.py (§1.2,
+# enforced by tests/test_leakage.py). This file is the answer key for what an
+# action is WORTH, and the whole measurement collapses if the decision path can
+# see it.
+#
+# Keyed by TRUE MECHANISM x EXECUTED ACTION -- the full cross product, not
+# "right action vs blind retry". When B2 misdiagnoses a PSP degradation as an
+# issuer degradation, the policy executes ALTERNATE_METHOD_LINK, and attribution
+# regret is undefined unless the environment knows the consequence of THAT
+# action under the TRUE mechanism.
+#
+# Efficacies are sampled per scenario from these ranges and then frozen.
+
+recovery_probability:
+  issuer_degradation:
+    SAME_RAIL_RETRY:       [0.05, 0.45]
+    SWITCH_PSP:            [0.10, 0.40]
+    ALTERNATE_METHOD_LINK: [0.35, 0.85]
+    BACKOFF_REPRESENT:     [0.25, 0.60]
+    NO_ACTION:             [0.10, 0.30]
+  psp_degradation:
+    SAME_RAIL_RETRY:       [0.10, 0.40]
+    SWITCH_PSP:            [0.40, 0.80]
+    ALTERNATE_METHOD_LINK: [0.25, 0.60]
+    BACKOFF_REPRESENT:     [0.20, 0.55]
+    NO_ACTION:             [0.10, 0.30]
+  card_auth_spike:
+    SAME_RAIL_RETRY:       [0.02, 0.30]     # retry re-triggers the failing auth
+    SWITCH_PSP:            [0.05, 0.35]
+    ALTERNATE_METHOD_LINK: [0.25, 0.60]
+    BACKOFF_REPRESENT:     [0.15, 0.45]
+    NO_ACTION:             [0.08, 0.25]
+  upi_network_degradation:
+    SAME_RAIL_RETRY:       [0.15, 0.55]
+    SWITCH_PSP:            [0.15, 0.45]
+    ALTERNATE_METHOD_LINK: [0.20, 0.60]
+    BACKOFF_REPRESENT:     [0.30, 0.70]
+    NO_ACTION:             [0.12, 0.35]
+  # OOD: NO_ACTION is deliberately competitive, so abstention has a measurable
+  # payoff and escalating-over-guessing shows up in rupees rather than only in
+  # principle (§10).
+  ood:
+    SAME_RAIL_RETRY:       [0.05, 0.35]
+    SWITCH_PSP:            [0.05, 0.35]
+    ALTERNATE_METHOD_LINK: [0.10, 0.45]
+    BACKOFF_REPRESENT:     [0.15, 0.50]
+    NO_ACTION:             [0.20, 0.55]
+  # `none`: nothing is at risk, so recovery is undefined -- but intervening
+  # still costs. Handled by the value formula (§10.1), which multiplies a zero
+  # at-risk amount by whatever sits here while still charging the action cost
+  # against touched volume. Kept explicit rather than omitted so a lookup
+  # cannot silently KeyError into a default.
+  none:
+    SAME_RAIL_RETRY:       [0.0, 0.0]
+    SWITCH_PSP:            [0.0, 0.0]
+    ALTERNATE_METHOD_LINK: [0.0, 0.0]
+    BACKOFF_REPRESENT:     [0.0, 0.0]
+    NO_ACTION:             [0.0, 0.0]
+
+# Added abandonment fraction, applied regardless of mechanism (§10).
+action_cost:
+  SAME_RAIL_RETRY:       [0.00, 0.05]
+  # Narrowed from [0.00, 0.20] on Day 4 dev Monte Carlo (§10 says to validate
+  # flips there and adjust before freezing). The wide range was written when
+  # cost was implicitly charged against at-risk volume; once SWITCH_PSP pays
+  # against the FULL flow, 20% added abandonment on every customer implies a
+  # backend routing change is more disruptive than the outage it fixes. A PSP
+  # switch is invisible to the customer -- some failures during cutover, not a
+  # fifth of the book walking away.
+  SWITCH_PSP:            [0.00, 0.05]
+  ALTERNATE_METHOD_LINK: [0.05, 0.25]
+  BACKOFF_REPRESENT:     [0.02, 0.15]
+  NO_ACTION:             [0.00, 0.00]
+
+# WHICH volume each action's cost is charged against (v1.3.1, Day 4).
+#
+# §10.1 first charged every action's cost against ALL touched traffic. Running
+# §10's own falsifiability check exposed that as wrong: with a ~7% failure rate
+# the touched flow is ~14x the at-risk amount, so cost swamped recovery and
+# NO_ACTION came out optimal 61-88% of the time. An experiment in which doing
+# nothing is almost always right cannot measure diagnostic value.
+#
+# The error was treating all four actions as equally intrusive. They are not:
+#
+#   SWITCH_PSP            reroutes the ENTIRE flow through a different gateway.
+#                         Its added abandonment genuinely falls on customers who
+#                         would have paid fine.            -> touched
+#   SAME_RAIL_RETRY       retries only what already failed. -> at_risk
+#   ALTERNATE_METHOD_LINK contacts only the customers whose
+#                         payment failed.                   -> at_risk
+#   BACKOFF_REPRESENT     delays only what already failed.  -> at_risk
+#
+# This keeps the property that matters -- a false intervention is genuinely
+# costly -- and puts the collateral damage on the one systemic action that
+# actually causes it. A needless SWITCH_PSP on a healthy gateway is expensive;
+# a needless payment link to a handful of customers is mildly expensive via the
+# contact penalty. Both remain negative. That ordering is the realistic one.
+cost_base:
+  SAME_RAIL_RETRY:       at_risk
+  SWITCH_PSP:            touched
+  ALTERNATE_METHOD_LINK: at_risk
+  BACKOFF_REPRESENT:     at_risk
+  NO_ACTION:             at_risk
+
+# Fixed penalty for reaching out to a customer at all, charged once per
+# executed customer-contacting action (§10.1). Without it, a false intervention
+# on a healthy segment costs only the abandonment fraction, and the reputational
+# cost of pestering people who were about to pay fine never enters the ledger.
+contact_penalty_paise: 40000              # Rs 400 simulated, per intervention
+
+customer_contacting:
+  - ALTERNATE_METHOD_LINK
+  - BACKOFF_REPRESENT
+
+# Sensitivity sweep (§10). The headline result counts only if the policy beats
+# B0 in ALL THREE regimes. Multipliers on the sampled recovery probability;
+# costs move the opposite way, so "pessimistic" means less recovery AND more
+# cost.
+sensitivity:
+  pessimistic: {recovery_scale: 0.80, cost_scale: 1.25}
+  base:        {recovery_scale: 1.00, cost_scale: 1.00}
+  optimistic:  {recovery_scale: 1.20, cost_scale: 0.80}

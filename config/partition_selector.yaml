@@ -1,0 +1,63 @@
+# PRE-REGISTERED partition selection for L3. SPEC §8.3.
+#
+# Committed BEFORE evaluation and before L3 is implemented (Day 7), so there is
+# no runtime "pick whichever graph looks cleanest". Every row below is copied
+# from §8.3's table -- none of it was tuned, because there is nothing yet to
+# tune it against.
+#
+# CAVEAT, recorded rather than hidden: §13 requires these to be hashed on Day 6,
+# but L3 lands on Day 7. If L3 cannot run under these gates, changing them
+# invalidates this tag and requires a SECOND tag (prereg-l3) before B3 is
+# scored on the frozen set. That is the honest remedy; silently editing them
+# after seeing L3's behaviour is not. See WORKLOG 26 Aug (Day 0).
+
+# The selector keys on the (source, step) PAIR, not source alone.
+# `issuer_degradation` and `card_auth_spike` share source `issuer_bank` and are
+# separated only by step -- see config/signatures.yaml `disambiguation`.
+partitions:
+  - dominant_source: issuer_bank
+    partition: issuer
+  - dominant_source: gateway
+    partition: psp
+  - dominant_source: customer_psp
+    partition: psp
+  - dominant_source: network
+    partition: network        # added Day 0: §8.3's table has no `network` row,
+                              # yet upi_network_degradation is network-dominant
+  - method_local_auth: true
+    partition: method
+  - ambiguous_or_two_signatures: true
+    partition: null           # NO L3 RUN
+
+# Variables within a partition are per-ISSUER, aggregated over methods.
+# Resolves two things at once (WORKLOG 26 Aug, Day 1):
+#   - the 5-8 variable gate: the issuer partition gives 8, which fits
+#   - the exposure gate: netbanking cells run ~23 attempts/window, below the
+#     30 floor, but an issuer aggregated over methods runs ~130
+variable_set: per_issuer_aggregated_over_methods
+
+gates:
+  min_attempts_per_cell_per_window: 30
+  min_windows: 288                # T, not transaction count (§8.3)
+  min_variables: 5
+  max_variables: 8
+
+pcmci:
+  ci_test: ParCorr
+  tau_max: 6
+  alpha: 0.05
+  fdr: benjamini_hochberg         # applied to the FINAL MCI edge set (§8.3)
+
+stability:
+  method: block_bootstrap
+  n_resamples: 100
+  min_root_agreement: 0.70
+
+# Cycles are NOT an abstention trigger: lagged feedback (X_t -> Y_t+1,
+# Y_t -> X_t+1) is legitimate in a time-series graph (§8.3).
+abstain_on:
+  - gate_failure
+  - no_edges_surviving_fdr
+  - unstable_root
+  - insufficient_root_separation
+  - contradicts_routing_constraints

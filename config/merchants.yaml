@@ -1,0 +1,49 @@
+# Per-merchant configuration.
+#
+# A merchant entry is a DIFF against config/declines.yaml, never a copy. Copying
+# the whole config per merchant rots: the default changes, the copies do not,
+# and a bound quietly stops matching the one documented in the README.
+#
+# THIS IS NOT MULTI-TENANCY. All merchants share one lock and one process, and
+# per-merchant ledger paths are filesystem hygiene so a demo does not mix books
+# -- not data isolation. Real isolation means a merchant id on every row and
+# every query scoped by it. See src/recovery/merchants.py.
+#
+# `default` is the live Razorpay test account and needs no entry.
+
+merchants:
+
+  # A worked example rather than a placeholder: a subscription business, which
+  # is the book where the published 70-80% recovery band actually lives (see
+  # docs/RECOVERY_RATE.md). It holds mandates, so silent retries are executable
+  # and the cheapest rungs of the ladder are free -- which is why it can afford
+  # a longer sequence and a lower contact ceiling at the same time.
+  acme_subs:
+    name: "Acme Subscriptions"
+    # THE LOCAL GATEWAY, not Razorpay. Subscriptions is not enabled on the
+    # Razorpay account -- /subscriptions and /plans return 401 on a key that
+    # reads /payments fine -- and it cannot be enabled from here. What a
+    # subscription loop needs is a standing mandate and a schedule, neither of
+    # which is Razorpay-specific, so this merchant keeps its own book and its
+    # own gateway. Nothing it mints is REAL money; every artefact is LOCAL.
+    gateway: local
+    # Where its cases come from. The default merchant reads the live Razorpay
+    # account; this one reads data/live/acme_subs.subscriptions.jsonl, written
+    # by `python -m scripts.seed_subscriptions --execute`.
+    source: subscriptions
+    env_prefix: ACME_
+    base_url: "https://recover.example.com"
+    notify:
+      email: true
+      sms: false
+    overrides:
+      compliance:
+        # Fewer customer contacts, because silent retries do the work.
+        max_contacts_per_reference: 2
+        max_contacts_per_customer_per_day: 1
+      stopping:
+        # A recurring charge is worth chasing further than a one-off checkout.
+        max_attempts: 8
+        max_sequence_days: 28
+        # Subscription amounts are smaller and recur, so the floor is lower.
+        min_at_risk_paise: 100000          # Rs 1,000

@@ -1,0 +1,83 @@
+# Method-aware routing topology. SPEC §3.1.
+#
+# VERIFIED against Razorpay docs on Day 0 (26 Aug 2026):
+#   https://razorpay.com/docs/errors/payments/payment-methods-error-parameters/
+#
+# CORRECTION TO SPEC v1.1 §3.1 — netbanking has NO `gateway` source.
+# The documented netbanking source vocabulary is
+#   [customer, business, internal, issuer_bank]
+# The spec assumed [gateway, issuer_bank]. Docs win (§0 rule 2).
+# Consequence recorded in WORKLOG.md: `psp_degradation` (dominant source
+# `gateway`) cannot manifest on netbanking, so its method scope narrows to
+# card + upi. See config/mechanisms.yaml.
+#
+# `sources` below lists only the INFRASTRUCTURE sources we model. The
+# documented vocabulary also includes customer / business / internal, which
+# are not degradation-bearing layers and are excluded deliberately.
+
+methods:
+  upi:
+    # documented: customer, business, internal, customer_psp, gateway,
+    #             network, issuer_bank, beneficiary_bank
+    sources: [customer_psp, gateway, network, issuer_bank, beneficiary_bank]
+    layers:  [customer_psp, gateway, network, issuer_bank]
+    steps:
+      - payment_initiation
+      - payment_creation
+      - payment_authentication
+      - payment_request
+      - payment_debit_request
+      - payment_debit_response
+      - payment_credit_request
+      - payment_credit_response
+      - payment_status_request
+      - payment_response
+
+  card:
+    # documented: customer, business, internal, gateway, issuer_bank
+    sources: [gateway, issuer_bank]
+    layers:  [gateway, issuer_bank]
+    steps:
+      - payment_initiation
+      - card_enrollment_check
+      - payment_authentication
+      - payment_authorization
+      - payment_capture
+
+  netbanking:
+    # documented: customer, business, internal, issuer_bank  -- NO gateway
+    sources: [issuer_bank]
+    layers:  [issuer_bank]
+    steps:
+      - payment_initiation
+      - payment_authentication
+      - payment_authorization
+
+issuers: [ISSUER_A, ISSUER_B, ISSUER_C, ISSUER_D,
+          ISSUER_E, ISSUER_F, ISSUER_G, ISSUER_H]
+psps:    [PSP_1, PSP_2, PSP_3, PSP_4]
+networks: [NET_1, NET_2]          # UPI only
+
+# Deliberately overlapping: PSP and network are PARTIALLY crossed, not nested.
+# PSP_1 sits wholly in NET_1 and PSP_4 wholly in NET_2, but PSP_2 and PSP_3
+# straddle both networks. Infrastructure confounding must be real (§3.1), and
+# the partial straddle is what makes L2's topology attribution non-trivial:
+# a NET_1 incident and a PSP_1 incident are separable only through the cells
+# where the two groupings disagree.
+routing:
+  ISSUER_A: {psp: PSP_1, network: NET_1}
+  ISSUER_B: {psp: PSP_1, network: NET_1}
+  ISSUER_C: {psp: PSP_2, network: NET_1}
+  ISSUER_D: {psp: PSP_2, network: NET_2}
+  ISSUER_E: {psp: PSP_3, network: NET_1}
+  ISSUER_F: {psp: PSP_3, network: NET_2}
+  ISSUER_G: {psp: PSP_4, network: NET_2}
+  ISSUER_H: {psp: PSP_4, network: NET_2}
+
+# Cascade weights w_pq for SPEC §5.2 (v1.2). Cells are linked when they share
+# a PSP or a network, method-valid. Weight is the share of routing structure
+# in common; normalized per cell at load time.
+cascade_weights:
+  shared_psp: 1.0
+  shared_network: 0.5
+  unrelated: 0.0

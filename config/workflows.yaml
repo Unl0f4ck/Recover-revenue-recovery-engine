@@ -1,0 +1,380 @@
+# The four revenue-leak workflows.
+#
+# Each is a complete loop -- DETECT the problem, DIAGNOSE it, CHOOSE an
+# intervention, RECOVER the money -- and each detects and diagnoses differently,
+# which is the whole reason they are separate rather than one queue with a type
+# column.
+#
+#   payment_degradation   a RAIL is failing. Detected statistically across many
+#                         payments, not from any one of them. Diagnosed to an
+#                         issuer, PSP or network. One intervention covers the
+#                         whole affected segment.
+#
+#   checkout_abandonment  nobody failed and nobody was told. Detected by
+#                         absence: an order created and never paid. There is
+#                         nothing to diagnose beyond "they left".
+#
+#   subscription_failure  a recurring charge against a MANDATE failed. Detected
+#                         per subscription. Diagnosed from the decline reason --
+#                         and uniquely, retryable SILENTLY, because the mandate
+#                         is standing consent.
+#
+#   invoice_overdue       money already owed under agreed terms. Detected by
+#                         arithmetic on the issue date, not by any event at all.
+#
+# The stopping rules, quiet hours, opt-out and contact ceilings in
+# declines.yaml apply to ALL of them. A workflow chooses what to do; it never
+# chooses whether the limits apply.
+
+version: "workflows-1.0"
+
+workflows:
+
+  payment_degradation:
+    title: "Payment degradation"
+    plain: "A bank or payment route is failing"
+    detect: >
+      Statistical. A binomial CUSUM over 5-minute windows per segment, so the
+      signal is a shift in the FAILURE RATE, not any individual failure. One
+      declined card is noise; the same issuer declining 40% for twenty minutes
+      is an incident.
+    diagnose: >
+      The attribution ladder narrows a set of failing cells to a single cause
+      node -- this issuer, that PSP, this network -- and to a mechanism family
+      from the error signature. That is what makes the intervention a REROUTE
+      rather than a retry.
+    unit: "incident"
+    schedule: fast
+    # An incident is not chased by messaging customers; it is fixed by moving
+    # traffic. Customer contact is the last resort, not the first.
+    prefers_rail_change: true
+    requires:
+      - "enough volume per segment to detect a rate shift"
+    min_volume_per_segment: 30
+
+  checkout_abandonment:
+    title: "Checkout abandonment"
+    plain: "Someone left without paying"
+    detect: >
+      By absence. An order was created, no payment succeeded, and the grace
+      period has passed. There is no error code and no failure report, so a
+      failure-driven recovery system never sees this money at all.
+    diagnose: >
+      Nothing to diagnose. Nothing failed -- there is no decline reason, no
+      rail at fault, and no instrument to fix. The only question is whether the
+      exposure justifies a nudge.
+    unit: "order"
+    schedule: abandoned
+    requires: []
+
+  subscription_failure:
+    title: "Subscription failure"
+    plain: "A recurring charge didn't go through"
+    detect: >
+      Per subscription. A charge against a standing mandate failed, or the
+      subscription has fallen into a pending/halted state.
+    diagnose: >
+      From the decline reason, exactly as a one-off failure -- but the
+      conclusion differs, because a mandate is standing consent. Insufficient
+      funds on a mandate can simply be retried on payday without asking anyone.
+    unit: "subscription"
+    schedule: mandate
+    # THE DIFFERENCE THAT MATTERS. A mandate means retrying costs nothing and
+    # interrupts nobody, so the cheapest rungs of the ladder become free. This
+    # is the capability our own analysis identified as the binding constraint
+    # on recovery rate (docs/RECOVERY_RATE.md).
+    mandate_backed: true
+    requires:
+      - "an active mandate, e-mandate or UPI Autopay authorisation"
+    # Probed against the live account on 28 Aug 2026: GET /subscriptions and
+    # GET /plans both return 401 Unauthorized on this key, while /payments,
+    # /orders, /invoices and /customers all succeed. That is FEATURE GATING,
+    # not a credentials problem -- Subscriptions is not enabled on this
+    # account. The workflow is built in full (classification, the mandate
+    # ladder, the silent rungs) and reports precisely why it cannot run,
+    # rather than being quietly omitted or demonstrated with invented data.
+    account_blocked: "Razorpay Subscriptions is not enabled on this account (401 from /subscriptions and /plans, probed 28 Aug 2026)"
+
+  invoice_overdue:
+    title: "Invoice overdue"
+    plain: "An invoice passed its payment terms"
+    detect: >
+      Arithmetic, not an event. Issue date plus agreed terms plus a grace
+      period. Nothing happens to make a receivable overdue; time passes.
+    diagnose: >
+      There is no fault to diagnose -- the money is already owed. What matters
+      instead is the DEBTOR's behaviour: how overdue, how large, whether they
+      have promised to pay, and whether they have broken a promise before.
+    unit: "invoice"
+    schedule: overdue
+    # Receivables are the one stream where a person is the right ending. Nobody
+    # writes off a debt automatically; somebody decides to.
+    ends_with_human: true
+    promise_to_pay: true
+    requires: []
+
+# ---------------------------------------------------------------------------
+# CHANNELS
+#
+# How we reach a customer, and what each one costs and is bound by. Voice is
+# separated from messaging because it is regulated differently in India: TRAI
+# restricts commercial calls to 09:00-21:00 and honours the DND registry, which
+# is stricter than our own 08:00-22:00 messaging window.
+# ---------------------------------------------------------------------------
+# WHERE 20 PAISE COMES FROM, since every other number in this file records its
+# provenance and this one did not.
+#
+# I CHOSE IT. It is a plausible price for one transactional SMS on an Indian
+# DLT route, but it is not quoted from Razorpay, not from an operator price
+# sheet, and not measured on this account. Treat it as an estimate with roughly
+# a factor-of-two uncertainty band, not as a rate.
+#
+# It survives being wrong, and that is the point of writing it down. The cash
+# cost it produces is 0.25% of the total cost of working a batch -- 590
+# contacts came to Rs 118 of messaging against Rs 46,485 for the interruptions
+# themselves. Double the 20p and the batch's net contribution moves by 0.01%.
+# `scripts/ops floors` prints the sensitivity table that shows the same thing
+# from the other end: at a nuisance price of zero, every threshold collapses to
+# a cash floor of a few rupees.
+#
+# So the number to argue about is `nuisance_paise_per_contact` below, not this
+# one. This matters only for the cash-floor column, which exists to show how
+# far ABOVE break-even the real thresholds sit.
+#
+# AND NOTHING IS CURRENTLY SENT. No caller passes a `deliver` map, so the
+# sequencer creates a Payment Link and never asks Razorpay to notify anyone --
+# every notification row is recorded against channel "none". 20 paise is what a
+# contact WOULD cost once delivery is wired, not what this account has spent.
+# ---------------------------------------------------------------------------
+# DELIVERY -- whether the provider is asked to actually send the link.
+#
+# For most of this project the answer was no. Every Payment Link was created
+# with `notify: {sms: false, email: false}`, which was correct while there was
+# no opt-out list and no delivery ledger: a system that can send but cannot be
+# told to stop should not send. Both exist now.
+#
+# OFF BY DEFAULT ANYWAY, because turning it on is the one change here that
+# reaches a stranger. `run_dunning --notify` opts in for a single run, and the
+# report names every recipient before the first message goes out.
+#
+# CHANNEL IS CHOSEN PER CASE, not per run. If we hold an e-mail we ask for
+# e-mail; if we hold a phone number we ask for SMS; if we hold neither we ask
+# for nothing at all. That last clause is the one that matters: 37 of the live
+# campaigns are Razorpay ORDERS, which carry no contact details, and
+# `create_recovery_link` substitutes a placeholder customer so the API call
+# succeeds. Requesting SMS on those would have asked Razorpay to text
+# +919812345670 -- a real-format Indian mobile that belongs to nobody here.
+delivery:
+  enabled: false
+  sms: true
+  email: true
+  # Per MESSAGE, not per ladder step. A step that goes out by e-mail does not
+  # cost the same as one that goes out by SMS, and the old model charged 20p
+  # for both by charging per step instead.
+  cost_paise:
+    sms: 20                            # the estimate; see the note below
+    email: 2                           # transactional e-mail is an order cheaper
+
+  # REDIRECT -- send every message to these people instead of the customer.
+  #
+  # The standard test-mail pattern, and the reason it exists here: until now
+  # every recipient on this account was an address at `example.com`, which RFC
+  # 2606 reserves so that it can never receive anything. That is the correct
+  # default and it also means nobody has ever SEEN a recovery message. These
+  # are the operator's own contacts, so the ladder can be watched arriving.
+  #
+  # IT REDIRECTS DELIVERY, IT DOES NOT REWRITE THE BOOK. The ledger, the
+  # suppression list and the audit trail all keep recording the case's real
+  # customer, because rewriting those to make a demo work is how an audit trail
+  # stops being one. Only the address handed to Razorpay changes, and every
+  # record says both who it was for and where it actually went.
+  #
+  # Turning this off restores ordinary behaviour with no other change.
+  # THE CONTACTS THEMSELVES ARE NOT IN THIS FILE. They live in
+  # `config/redirect.local.yaml`, which is gitignored, because they are real
+  # personal addresses and a real mobile number and this repository is meant to
+  # be read by other people. Committing them would put them in the history
+  # permanently, where removing them means rewriting it.
+  #
+  # Copy `config/redirect.local.example.yaml` and fill it in. Absent that file
+  # the redirect is simply off and every message goes to the case's own
+  # customer, which is the correct default anyway.
+  redirect:
+    enabled: true
+
+channels:
+
+  payment_link:
+    plain: "a payment link"
+    contacting: true
+    # SMS rate, deliberately the dearer of the two: an exposure floor is
+    # computed per WORKFLOW, before any case exists, so it cannot know whether
+    # a given customer will be reached by e-mail at 2p or SMS at 20p. Assuming
+    # the dearer one keeps the floor conservative.
+    cost_paise: 20
+    hours_ist: [8, 22]
+
+  alternate_method_link:
+    plain: "a link with a different payment option"
+    contacting: true
+    cost_paise: 20
+    hours_ist: [8, 22]
+
+  payment_update:
+    plain: "a link to update their card"
+    contacting: true
+    cost_paise: 20
+    hours_ist: [8, 22]
+
+  voice:
+    plain: "a phone call"
+    contacting: true
+    # CHOSEN, and the loosest of the three cost estimates in this file.
+    #
+    # It is anchored only RELATIVE to the SMS number -- "much dearer than a
+    # text" -- so it inherits that estimate's uncertainty and adds its own. It
+    # is 20x the SMS rate, not the 10x the old comment claimed.
+    #
+    # It has also never been spent. `executable: false` below means no call has
+    # ever been placed, so this figure has affected exactly one thing: it adds
+    # 400p to the invoice-overdue ladder's cash cost, which moves that
+    # workflow's floor by Rs 13 out of Rs 432. Doubling it moves the floor to
+    # Rs 445 and changes nothing else in the system.
+    cost_paise: 400
+    # TRAI's window for commercial calls, and it is NARROWER than our messaging
+    # window on both ends. Encoded per channel rather than globally, because a
+    # single quiet-hours rule would either over-restrict SMS or under-restrict
+    # calls -- and under-restricting calls is a regulatory breach, not a
+    # courtesy failure.
+    hours_ist: [9, 21]
+    respects_dnd: true
+    # Reserved for cases where the exposure justifies the cost and the softer
+    # channels have already been spent.
+    min_at_risk_paise: 5000000           # Rs 50,000
+    requires_prior_contact: true
+    language: "hinglish"
+    executable: false                    # needs a telephony provider; see below
+    unavailable_reason: >
+      No telephony provider is connected. The call is planned, gated and
+      recorded as a step the ladder would take; it is never reported as placed.
+
+  silent:
+    plain: "a quiet retry, with no message"
+    contacting: false
+    cost_paise: 0
+
+  reconcile:
+    plain: "a check with Razorpay"
+    contacting: false
+    cost_paise: 0
+
+  human_review:
+    plain: "a person"
+    contacting: false
+    cost_paise: 0
+    terminal: true
+
+  write_off:
+    plain: "giving up"
+    contacting: false
+    cost_paise: 0
+    terminal: true
+
+# ---------------------------------------------------------------------------
+# COSTS
+#
+# What chasing a case actually costs. Written down because the exposure floor
+# used to be justified as "below this a recovery attempt costs more than it can
+# bring back", and nobody had checked: the dearest ladder is 460 paise of
+# messaging, so at a 30% recovery rate the true break-even is about Rs 15 --
+# not the Rs 5,000 we were claiming. See src/recovery/economics.py.
+# ---------------------------------------------------------------------------
+costs:
+  # Used to compute the ECONOMIC floor. Not the hidden efficacy matrix from the
+  # research layer; this is what a payments team would estimate from its own
+  # history, and the policy layer is allowed to know it.
+  assumed_recovery_probability: 0.30
+  # AN OPERATOR'S TIME -- 5 min / 60 x 30000 paise = 2500 paise = Rs 25,
+  # counted only when a ladder actually reaches a human.
+  #
+  # THE MOST LOAD-BEARING OF THE THREE CASH COSTS, by a wide margin. Wherever a
+  # human step exists it is ~98% of that ladder's cash cost (2500 of 2560, of
+  # 2540, of 2960), and it is the only cash number whose being wrong would be
+  # visible: doubling either input moves three of the four floors by Rs 83
+  # (Rs 685 -> 769, Rs 351 -> 435, Rs 432 -> 515). Doubling the SMS rate moves
+  # them by Rs 2.
+  #
+  # BOTH INPUTS ARE CHOSEN. Five minutes is an estimate of how long it takes a
+  # person to read one case and decide; Rs 300/hour is a plausible fully-loaded
+  # rate for a payments-ops role in India. Neither is measured -- this project
+  # has no operator and has never timed one. They are stated as two numbers
+  # rather than one Rs 25 constant precisely so a merchant can argue with the
+  # half they disagree with.
+  #
+  # The nuisance term below still dominates, but not uniformly: it is 99.9% of
+  # the abandonment floor and only 76% of the subscription one, where this
+  # Rs 25 is a quarter of the whole number. That is the workflow to re-examine
+  # if the operator estimate turns out to be wrong.
+  human_review_minutes: 5
+  operator_hourly_paise: 30000          # Rs 300/hour
+
+  # THE PRICE OF INTERRUPTING SOMEONE.
+  #
+  # This is the number that actually sets the floor, and it took a direct
+  # question -- "why is 500 the threshold?" -- to notice that nothing did.
+  # Before this, four round floors (Rs 200 / 500 / 1,000 / 1,500) sat in config
+  # at 2x, 5x, 12x and 750x their cash break-even. Four unrelated numbers with
+  # prose written after the fact.
+  #
+  # A message costs 20 paise in cash and something much larger in goodwill: one
+  # unit of a customer's finite tolerance, and a slice of the merchant's sender
+  # reputation. That second cost is real, does not scale with the amount at
+  # stake, and is the entire reason a floor exists above break-even.
+  #
+  # It cannot be measured from this account. But it is ARGUABLE in a way a
+  # round floor is not: a merchant can say "no, an invoice reminder is worth
+  # more annoyance than that" and the floor moves accordingly. And it makes the
+  # floor derived, so adding a rung to a ladder correctly raises it.
+  #
+  # Per workflow, because how welcome a message is differs enormously.
+  nuisance_paise_per_contact:
+    checkout_abandonment: 15000         # Rs 150 -- the dearest, and it should be.
+                                        # Nobody asked us to get in touch and they
+                                        # owe nothing, so this is the message most
+                                        # likely to be marked as spam -- and a spam
+                                        # complaint costs deliverability for every
+                                        # FUTURE message, not just this one.
+    payment_degradation: 6000           # Rs 60 -- the real intervention here is a
+                                        # reroute that nobody sees. A message is a
+                                        # fallback, and it explains a failure the
+                                        # customer already experienced.
+    subscription_failure: 4000          # Rs 40 -- about a service they are actively
+                                        # subscribed to, after four silent retries
+                                        # have already been spent. Expected.
+    invoice_overdue: 2500               # Rs 25 -- the cheapest. They owe the money
+                                        # and agreed the terms; a reminder is the
+                                        # least objectionable message we send, and
+                                        # arguably one they would rather receive
+                                        # than not.
+
+# ---------------------------------------------------------------------------
+# PROMISE TO PAY
+#
+# A debtor who says "I'll pay on Friday" is not the same as one who says
+# nothing, and treating them identically is how a collections process loses
+# customers who were going to pay anyway.
+# ---------------------------------------------------------------------------
+promise_to_pay:
+  enabled: true
+  # A promise PAUSES the ladder until the promised date plus a short grace.
+  # Chasing someone who has already committed to a date is the single most
+  # reliable way to make them stop answering.
+  grace_days: 1
+  # Longest promise we will honour without a human agreeing to it. Beyond this
+  # a debtor can park a debt indefinitely by promising ever-later dates.
+  max_horizon_days: 30
+  # Promises broken before the ladder loses patience and escalates.
+  max_broken: 2
+  # A broken promise is information, not just a delay: it moves the case
+  # forward rather than resuming where it paused.
+  on_broken: escalate

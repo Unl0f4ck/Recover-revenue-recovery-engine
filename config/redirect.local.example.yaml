@@ -1,0 +1,13 @@
+# Copy to `config/redirect.local.yaml` (gitignored) and fill in.
+#
+# Every recovery message goes to these instead of the customer -- the standard
+# test-mail pattern, and the only way to watch a ladder actually arrive. It
+# redirects DELIVERY ONLY: the ledger, the suppression list and the audit trail
+# all keep recording the case's real customer.
+#
+# Delete the file, or set `enabled: false` in workflows.yaml, to turn it off.
+email:
+  - you@example.com
+  - you+two@example.com
+sms:
+  - "+919876543210"

@@ -1,0 +1,57 @@
+# HIDDEN generator config. SPEC §3.2 and §5.2 (v1.2).
+#
+# src/attribution/, src/detector/ and src/policy.py may NEVER read this file
+# (§1.2, enforced by tests/test_leakage.py). It holds the answers: who is
+# broken, how hard, for how long, and how far it spreads.
+#
+# The observable half -- code / source / step / reason per family -- was split
+# out to config/signatures.yaml on Day 3, which attribution MAY read. See that
+# file's header and WORKLOG 27 Aug for where the line sits and why.
+#
+# Field values verified against Razorpay docs Day 0; see WORKLOG 26 Aug.
+
+mechanisms:
+
+  issuer_degradation:
+    affected_set: one_issuer
+    ramp: step
+    # An issuer stalling back-pressures its PSP only weakly: the failure is
+    # contained at the bank.
+    beta: 0.15
+
+  psp_degradation:
+    affected_set: all_issuers_under_one_psp
+    ramp: linear
+    # Highest coupling of the four. A saturating gateway shifts retry pressure
+    # and load across every cell behind it (§5.2 grounding).
+    beta: 0.60
+
+  card_auth_spike:
+    affected_set: one_issuer_cards
+    ramp: step
+    # Locally contained to one issuer's card cells -- effectively no cascade.
+    beta: 0.0
+
+  upi_network_degradation:
+    affected_set: all_upi_cells_on_one_network
+    ramp: linear
+    # Propagates to beneficiary banks at differing rates (§5.2 grounding).
+    beta: 0.35
+
+# Shared parameters, SPEC §3.2.
+severity_log_odds: [0.8, 3.0]
+duration_minutes: [20, 180]
+overlap_fraction: 0.15                   # ~15% of scenarios carry overlapping
+                                         # incidents
+
+# v1.2 §5.2 onset/propagation. PRE-REGISTERED -- hash in PREREGISTRATION.md.
+onset:
+  mixture:
+    propagating: 0.60
+    simultaneous: 0.40
+  offset_windows: [0, 1, 2, 3, 4]        # Delta_{m,p}, discrete uniform
+  severity_jitter: [0.6, 1.4]            # gamma_{m,p} = gamma_m * U(0.6, 1.4)
+
+# OOD mechanisms are GENERATOR-ONLY and never appear here as recognizable
+# classes (SPEC §3.2). They live in src/simulator/mechanisms.py, are labelled
+# `ood_*` in the episode ledger, and the attributor is never designed for them.

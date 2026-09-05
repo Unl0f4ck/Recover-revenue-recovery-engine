@@ -1,0 +1,56 @@
+# PUBLIC signature table. Readable by src/attribution/.
+#
+# Resolves the §1.2 / §8.2 conflict raised on Day 0:
+#   §1.2 forbids attribution from touching mechanisms.yaml.
+#   §8.2 requires L2 to derive `mechanism_family` from the source/step/reason
+#        signature -- which lived in mechanisms.yaml.
+# Both could not hold. mechanisms.yaml is split in two.
+#
+# THE LINE: attribution is allowed to know what an issuer fault LOOKS LIKE.
+# It is forbidden to know who is currently broken, how hard, for how long, or
+# how far it spreads. Everything on this page is what an operator reads off the
+# Razorpay dashboard -- documented error taxonomy, nothing scenario-specific.
+#
+# Stays in mechanisms.yaml (hidden, generator-only): affected_set, ramp, beta,
+# severity range, duration range, onset mixture, overlap fraction.
+#
+# Field values verified against Razorpay docs on Day 0; see WORKLOG 26 Aug.
+
+families:
+
+  issuer_degradation:
+    source: issuer_bank
+    steps: [payment_authorization, payment_debit_response]
+    codes: [bank_technical_error, bank_not_available, bank_cutoff_in_progress]
+    reason: bank_technical_error
+    methods: [upi, card, netbanking]
+
+  psp_degradation:
+    source: gateway
+    steps: [payment_request, payment_initiation]
+    codes: [gateway_technical_error, psp_app_not_available, upi_app_technical_error]
+    reason: gateway_technical_error
+    # netbanking has no documented `gateway` source -- see topology.yaml
+    methods: [upi, card]
+
+  card_auth_spike:
+    source: issuer_bank
+    steps: [payment_authentication]
+    codes: [authentication_failed, otp_attempts_exceeded, otp_expired, incorrect_otp]
+    reason: authentication_failed
+    methods: [card]
+
+  upi_network_degradation:
+    source: network
+    steps: [payment_request_beneficiary_details]
+    codes: [vpa_resolution_failed]
+    reason: vpa_resolution_failed
+    methods: [upi]
+
+# `issuer_degradation` and `card_auth_spike` share source `issuer_bank` and are
+# separated ONLY by step (payment_authorization vs payment_authentication).
+# §3.2 anticipated this: "source alone does not distinguish an issuer outage
+# from an authentication failure spike." Any family resolution that keys on
+# source alone will conflate them.
+disambiguation:
+  requires_step: [issuer_degradation, card_auth_spike]

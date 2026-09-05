@@ -1,0 +1,92 @@
+# Recovery policy. SPEC §9.
+# BYTE-IDENTICAL ACROSS B1/B2/B3 (§1.2 policy identity invariant). Diagnosis is
+# the only varying input. Changing anything here changes every arm at once,
+# which is the point.
+
+actions:
+  issuer_degradation: ALTERNATE_METHOD_LINK
+  psp_degradation: SWITCH_PSP
+  # never SAME_RAIL_RETRY -- retry re-triggers authentication (§9)
+  card_auth_spike: ALTERNATE_METHOD_LINK
+  upi_network_degradation: BACKOFF_REPRESENT
+  UNKNOWN: NO_ACTION                 # + escalate
+  none: NO_ACTION
+
+bounds:
+  # SPEC §9 states max 2 retries PER PAYMENT and a 10-minute cooldown. The
+  # analysis path carries 5-minute window COUNTS, not individual payments
+  # (§4: "counts are sufficient statistics"), so a per-payment counter has no
+  # referent here. Both are enforced at incident granularity instead, which is
+  # the level the policy actually acts at. Recorded as an approximation in
+  # WORKLOG 27 Aug rather than silently reinterpreted.
+  max_actions_per_incident: 2
+  cooldown_minutes: 10
+  quiet_hours_ist: [22, 8]           # no customer contact 22:00-08:00 IST
+  per_incident_spend_ceiling_paise: 50000000     # Rs 5,00,000 simulated
+  global_kill_switch: false
+
+# Actions that contact the customer directly, and so are blocked during quiet
+# hours. Rail-side actions are not customer-visible and continue overnight.
+customer_contacting:
+  - ALTERNATE_METHOD_LINK
+  - BACKOFF_REPRESENT
+
+# ---------------------------------------------------------------------------
+# INTERVENTION GATE (production, added 27 Aug after the frozen run)
+#
+# The frozen experiment exposed the defect this fixes: the system intervened on
+# 44 of 48 null scenarios. Diagnosis quality was not the problem -- given the
+# same detector output, an oracle diagnosis intervened ZERO times. The problem
+# is that the pipeline acted on the FIRST threshold crossing, and a random
+# fluctuation crosses just as readily as a real degradation.
+#
+# What separates them, measured on dev data:
+#
+#            real incidents   spurious alerts
+#   duration   median 14.5w      median 3.0w   (p75 = 4.0w)
+#   max shift  median 1.11       median 0.53
+#   max z      median 4.39       median 1.46
+#
+# Persistence is the strongest signal and the most operationally obvious: no
+# on-call system pages a human on a single 5-minute blip. An incident must
+# survive `min_persistence_windows` before any action is authorised.
+#
+# These are NOT the frozen experiment's parameters. That experiment is complete
+# and its numbers stand as reported. This gate is a production configuration,
+# selected under an explicit false-intervention constraint -- which is the
+# selection rule the original pre-registration should have used.
+intervention_gate:
+  enabled: true
+  # incident must persist this many 5-minute windows before acting
+  min_persistence_windows: 5
+  # residual log-odds shift must be materially large, not merely detectable
+  min_effect_logodds: 0.75
+  # do not spend an intervention on trivial exposure
+  min_at_risk_paise: 500000            # Rs 5,000
+  # conservative operator prior on how well an action works. NOT the hidden
+  # efficacy matrix -- this is what a payments team would estimate from its own
+  # history, and the policy layer is allowed to know it.
+  assumed_recovery_probability: 0.30
+  # required expected margin over the action's cost before acting
+  min_expected_margin_paise: 50000     # Rs 500
+
+# Checkout-abandonment stream (production).
+abandonment:
+  # grace period before an unpaid order or link counts as abandoned. Too short
+  # and we chase customers who are still typing their card number; too long and
+  # the purchase intent has gone cold.
+  stale_after_minutes: 30
+  # never chase the same object twice in one batch
+  one_attempt_per_reference: true
+
+# Batch-level stopping rules. The per-incident bounds above stop us hammering
+# one target; these stop a runaway agent touching the whole book in one run.
+batch_limits:
+  max_interventions_per_run: 50
+  max_exposure_per_run_paise: 100000000    # Rs 10,00,000 per run
+
+# Payment-failure stream. One failure is noise; a degradation is a rate shift
+# across a segment. Below this volume the detector cannot separate the two, and
+# the system says so rather than guessing.
+aggregate:
+  min_payments_per_segment: 30

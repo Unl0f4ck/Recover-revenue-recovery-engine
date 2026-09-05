@@ -1,0 +1,5269 @@
+{
+  "spec": "v1.3",
+  "base_seed": 20260901,
+  "n_scenarios": 240,
+  "composition": {
+    "issuer_degradation": 40,
+    "psp_degradation": 40,
+    "card_auth_spike": 40,
+    "upi_network_degradation": 40,
+    "none": 48,
+    "ood_beneficiary_credit_delay": 11,
+    "ood_checkout_config_regression": 11,
+    "ood_partial_psp_timeout": 10
+  },
+  "scenarios": [
+    {
+      "scenario_id": "frozen-issuer_degradation-000",
+      "kind": "issuer_degradation",
+      "seed": 20260901,
+      "stream_sha256": "f86b0c4adb72bc04061b9eed60054f9ce175d6517dc57632af1c8a651e0337ff",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-000-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.081295,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        },
+        {
+          "episode_id": "frozen-issuer_degradation-000-e1",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.839017,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-001",
+      "kind": "issuer_degradation",
+      "seed": 20260902,
+      "stream_sha256": "23019606d268a7921ccc553e105556f4ad460b330bb18c7514f5462650bf1cc3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-001-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.176273,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-002",
+      "kind": "issuer_degradation",
+      "seed": 20260903,
+      "stream_sha256": "1072c1d2709d14cee4c8727596ef583b3c6c27b9297f0589fbd33feeea837a2c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-002-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.533459,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-003",
+      "kind": "issuer_degradation",
+      "seed": 20260904,
+      "stream_sha256": "57434fd4250b9cc856618bafd96bfac19ebe00675d9df368089797a835e9d8ae",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-003-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.706019,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-004",
+      "kind": "issuer_degradation",
+      "seed": 20260905,
+      "stream_sha256": "847d05d7ffd8ab05535c1f0fea1be8d481d120c086b37871ed01a149ef7bf28b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-004-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.867891,
+          "primary_cell": "issuer:ISSUER_A|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-005",
+      "kind": "issuer_degradation",
+      "seed": 20260906,
+      "stream_sha256": "64062c15f1bd3e7f5281dd3e455ea814d6895f265fb9651955453b5083847329",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-005-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.788203,
+          "primary_cell": "issuer:ISSUER_E|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-006",
+      "kind": "issuer_degradation",
+      "seed": 20260907,
+      "stream_sha256": "c4927ca18e3c08beb2c9c37ff50960cf4e2fea59f8780c150befce036902045a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-006-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.886237,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-007",
+      "kind": "issuer_degradation",
+      "seed": 20260908,
+      "stream_sha256": "589472f0dc244a3f3dfd4c4efb6777e8d2b1c17671b7f826d4437c119d7e5b90",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-007-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.226579,
+          "primary_cell": "issuer:ISSUER_B|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-008",
+      "kind": "issuer_degradation",
+      "seed": 20260909,
+      "stream_sha256": "f14ee71765bf2dfb9637dd8cb7f869b7e61bd8ccf198586d6fcb3e60701bfa6e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-008-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.822896,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-009",
+      "kind": "issuer_degradation",
+      "seed": 20260910,
+      "stream_sha256": "d565716f4293ec8688cff877a5a05b73c3143c5e5fc703c47b65427be8af23ad",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-009-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.792154,
+          "primary_cell": "issuer:ISSUER_D|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-010",
+      "kind": "issuer_degradation",
+      "seed": 20260911,
+      "stream_sha256": "591f9b3bb36264a99a9d271f077255c19f8d2c35673d64ca8d530b2fecc827ca",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-010-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.735728,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-011",
+      "kind": "issuer_degradation",
+      "seed": 20260912,
+      "stream_sha256": "5968ea354028bcc92075da3db68356f9b5bd982d0c146d689d8eabf62be1163a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-011-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.831505,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-012",
+      "kind": "issuer_degradation",
+      "seed": 20260913,
+      "stream_sha256": "d9392735827567d00b61bf36c50981cf4cde3858d8e210ece6b1a73350dd91dd",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-012-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.577254,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-013",
+      "kind": "issuer_degradation",
+      "seed": 20260914,
+      "stream_sha256": "562eb5b8cc328c7ed0210c6de70ae389f578edefe4265e7820b6121705298a9b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-013-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.810257,
+          "primary_cell": "issuer:ISSUER_A|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-014",
+      "kind": "issuer_degradation",
+      "seed": 20260915,
+      "stream_sha256": "1821940e54a1627a9791f2462c2ff2964bfae26b831abe446dc172e1bc173bf9",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-014-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.098084,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-015",
+      "kind": "issuer_degradation",
+      "seed": 20260916,
+      "stream_sha256": "9f68c4bbe4fe2d148efd66cf351b82593f629b4495ac8ecd08949e6bfe0a371d",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-015-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.530377,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-016",
+      "kind": "issuer_degradation",
+      "seed": 20260917,
+      "stream_sha256": "65bd41c4d92513319188a246997fa181c494a992a8664ea01edb232da6fe4e18",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-016-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.159503,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-017",
+      "kind": "issuer_degradation",
+      "seed": 20260918,
+      "stream_sha256": "abfb54b1836803500a0672fc8b86418c8ae8bfc1355037af3a2e4d5c5f9a0cc2",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-017-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 0.990299,
+          "primary_cell": "issuer:ISSUER_G|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-018",
+      "kind": "issuer_degradation",
+      "seed": 20260919,
+      "stream_sha256": "106b21541f2d28f0aa71f3f71ce787220a445a4ad05bdeddd18a74d92fcfcf73",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-018-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.703297,
+          "primary_cell": "issuer:ISSUER_A|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-019",
+      "kind": "issuer_degradation",
+      "seed": 20260920,
+      "stream_sha256": "8372142b091fe4b040ed3cc56f263d22f7645b97d37282e6aae6e7f62163766f",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-019-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.004412,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-020",
+      "kind": "issuer_degradation",
+      "seed": 20260921,
+      "stream_sha256": "420b49c7750514bf731ee4c742cc7b4e4cdfbd7da2892f77cc9090ebd3da5b3b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-020-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.3587,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-021",
+      "kind": "issuer_degradation",
+      "seed": 20260922,
+      "stream_sha256": "dcb8da34ed2567bef4cccfb65bf705c8eac2729258e7dbc9b1bcb6c17b4cd922",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-021-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.71228,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-022",
+      "kind": "issuer_degradation",
+      "seed": 20260923,
+      "stream_sha256": "905cfa207ba64fa06483767f5a2f20901abc195b61a3b01921be6b6189c6cf64",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-022-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.942084,
+          "primary_cell": "issuer:ISSUER_H|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-023",
+      "kind": "issuer_degradation",
+      "seed": 20260924,
+      "stream_sha256": "25383b03724a76a3a897b1f06721723fb888bdd152b891fc51bc0ebec9e78b7d",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-023-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.143867,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-024",
+      "kind": "issuer_degradation",
+      "seed": 20260925,
+      "stream_sha256": "3116b69ee26eb19a171d4359a6c3b2c681460b39903173ad2e84a0791791f58b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-024-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.229823,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-025",
+      "kind": "issuer_degradation",
+      "seed": 20260926,
+      "stream_sha256": "0feba51970b6a1e4045eda47e6bdd1a7a1f9a045e4d87e43da417e4a5f710106",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-025-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.616574,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        },
+        {
+          "episode_id": "frozen-issuer_degradation-025-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.91663,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-026",
+      "kind": "issuer_degradation",
+      "seed": 20260927,
+      "stream_sha256": "4993e382c31da9fc7c74c468b83809a067b4df072ef0442340a5f2c1ddbb406a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-026-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.681506,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-027",
+      "kind": "issuer_degradation",
+      "seed": 20260928,
+      "stream_sha256": "deb732cf1c19864047005b705857c85e6b83ac0bc0a74a69d296a54269751a42",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-027-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.919582,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-028",
+      "kind": "issuer_degradation",
+      "seed": 20260929,
+      "stream_sha256": "aa86a4eee8ca1355354f2a41c37ab8f7975ffc4f6e9c962b0eebc74fdd9d8d5c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-028-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.526388,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-029",
+      "kind": "issuer_degradation",
+      "seed": 20260930,
+      "stream_sha256": "f0281af931d3dfb874fa31e5cfef08aeaeae2649f8c1ced0d7fdbaa64e236687",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-029-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.606507,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-030",
+      "kind": "issuer_degradation",
+      "seed": 20260931,
+      "stream_sha256": "5a27f3691e753ec7e3d5ae2aa41ce22e05eeeaf306b0cf07fcb301f90849d552",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-030-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.609618,
+          "primary_cell": "issuer:ISSUER_D|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-031",
+      "kind": "issuer_degradation",
+      "seed": 20260932,
+      "stream_sha256": "ca581294f2b41b6aa75789e7803e47ef6b4e3f891692f9b03937b57618947ab4",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-031-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.279878,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-032",
+      "kind": "issuer_degradation",
+      "seed": 20260933,
+      "stream_sha256": "0236b42cacc60e8d5f7c2e48abc25dd582dd40b427943bcdeabe940a5490fca2",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-032-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.572077,
+          "primary_cell": "issuer:ISSUER_F|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 3
+        },
+        {
+          "episode_id": "frozen-issuer_degradation-032-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.562564,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-033",
+      "kind": "issuer_degradation",
+      "seed": 20260934,
+      "stream_sha256": "5940caf33790c80282e131f31fa4f150fdb2093e8985b660bcbec298537563b0",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-033-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.450479,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 3
+        },
+        {
+          "episode_id": "frozen-issuer_degradation-033-e1",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.238025,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-034",
+      "kind": "issuer_degradation",
+      "seed": 20260935,
+      "stream_sha256": "03ede95a5c094b6926c9c35aace7610ad6055672e35e6b1f9edbac03a7ba86ba",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-034-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.971041,
+          "primary_cell": "issuer:ISSUER_B|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-035",
+      "kind": "issuer_degradation",
+      "seed": 20260936,
+      "stream_sha256": "7746661b0935985afd6375048283e8b34ab0a73a0f28941e4e69a32cb5720b4c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-035-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.082982,
+          "primary_cell": "issuer:ISSUER_H|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 3
+        },
+        {
+          "episode_id": "frozen-issuer_degradation-035-e1",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.581978,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-036",
+      "kind": "issuer_degradation",
+      "seed": 20260937,
+      "stream_sha256": "88a5b271ba707f84404c4ec9efbf3995ccd0c4727ed7331ab0f3398bf1fbb51b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-036-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.770195,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-037",
+      "kind": "issuer_degradation",
+      "seed": 20260938,
+      "stream_sha256": "351084f8788d2c634d61cf04649f341b99ea411999a5b2e59ee11b4e0cfd5782",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-037-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.868583,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-038",
+      "kind": "issuer_degradation",
+      "seed": 20260939,
+      "stream_sha256": "be2ef790c01966d41f62d6855f17f54ccbb95b703d36324f2d519f0be8814182",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-038-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.824504,
+          "primary_cell": "issuer:ISSUER_H|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-issuer_degradation-039",
+      "kind": "issuer_degradation",
+      "seed": 20260940,
+      "stream_sha256": "74c5e32dabb2701de94d5ca8beef6bd2e2b75d35b845988dba7edee6c5c0811c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-issuer_degradation-039-e0",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.669907,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-000",
+      "kind": "psp_degradation",
+      "seed": 20260941,
+      "stream_sha256": "1ce13e40ec497525c68c51cfd89e2bd68bde5b24524c413f31b792df9a09e682",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-000-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.816236,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-001",
+      "kind": "psp_degradation",
+      "seed": 20260942,
+      "stream_sha256": "6bc34710e81342e4f15ea3dffd928342a28297f2af6ff2b01372618078185272",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-001-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.750089,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-001-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 0.985457,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-002",
+      "kind": "psp_degradation",
+      "seed": 20260943,
+      "stream_sha256": "49ddf589027464af2f9d6018396ae771d106c35ff042ca5b5b9f5633b6e73c3e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-002-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 0.879143,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-003",
+      "kind": "psp_degradation",
+      "seed": 20260944,
+      "stream_sha256": "25d7e4fd2e58e96a28a8e61e02be6df6e2b21c509a23ba700d144db978d351ef",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-003-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.724067,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-004",
+      "kind": "psp_degradation",
+      "seed": 20260945,
+      "stream_sha256": "6155b15a8cd83d2e9b1501453cf0ac1fc8db7476cffca80339c92937d1cceb91",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-004-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.117119,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-005",
+      "kind": "psp_degradation",
+      "seed": 20260946,
+      "stream_sha256": "67d8a65545441017baaedcdfa5f44fce75c209dfd1f606ead2c1456dcc01c2bb",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-005-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.670069,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-006",
+      "kind": "psp_degradation",
+      "seed": 20260947,
+      "stream_sha256": "1d83bdd61096cededdaddfe3908d95d73e922ce7c9940be4caf188aff0cda615",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-006-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.00903,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-007",
+      "kind": "psp_degradation",
+      "seed": 20260948,
+      "stream_sha256": "84b7133d0b92e1037411e4a23dd090998b1153086a476738ee6456cf0fe82db0",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-007-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.473201,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-007-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.533264,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-008",
+      "kind": "psp_degradation",
+      "seed": 20260949,
+      "stream_sha256": "d15c9242a76894468cc2d0fb66f0552326723958a1c71c271638625077b1a091",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-008-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.573589,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-009",
+      "kind": "psp_degradation",
+      "seed": 20260950,
+      "stream_sha256": "f2c908b56d86a1bbd4786bc8d9939b4277b84661a305ce8f8269f2b6dcf3bcbf",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-009-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.929717,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-010",
+      "kind": "psp_degradation",
+      "seed": 20260951,
+      "stream_sha256": "e898ef82aec3e3d9a5022dd4cc7cf16f0f05441005e2402ca8503e601e48565a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-010-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.055536,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-011",
+      "kind": "psp_degradation",
+      "seed": 20260952,
+      "stream_sha256": "43726a2f2a50597dc84f98d0d20673b8289b9b189b049c9dea0b9084a08fe534",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-011-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.913044,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-012",
+      "kind": "psp_degradation",
+      "seed": 20260953,
+      "stream_sha256": "36dd8972c33346773e3ec44da2bd604cf576ccd224e807761667322290fef0f2",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-012-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.89665,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-012-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.213135,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-013",
+      "kind": "psp_degradation",
+      "seed": 20260954,
+      "stream_sha256": "6417c85349568d714ceb8337788a1395cca66fec09ed0e29f86aa61b16f9a3df",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-013-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.089807,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-014",
+      "kind": "psp_degradation",
+      "seed": 20260955,
+      "stream_sha256": "73ad90a947cf64ca3699bbbd2f52e792e682c772a7bb50b3e68411598ebcfc8c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-014-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.262028,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-015",
+      "kind": "psp_degradation",
+      "seed": 20260956,
+      "stream_sha256": "3412caa5421fdcb4008956a0318c9521823a1faaaa780706f1606ff423bd61b6",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-015-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.309458,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-016",
+      "kind": "psp_degradation",
+      "seed": 20260957,
+      "stream_sha256": "f29ab307352af75ce40182276dcb5ab8664e3e68d6eecc6de0b3a28aba91642c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-016-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.413031,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-017",
+      "kind": "psp_degradation",
+      "seed": 20260958,
+      "stream_sha256": "b42c650d4330f37701836f3cfdc57dfbb6634c676c65093ab50c10124fc3fab1",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-017-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.619162,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-017-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.133778,
+          "primary_cell": "issuer:ISSUER_B|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-018",
+      "kind": "psp_degradation",
+      "seed": 20260959,
+      "stream_sha256": "8d1d5f41727b67b86f590457020b986a5192bf01105a3999de75b17eac61ca49",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-018-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.080067,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-019",
+      "kind": "psp_degradation",
+      "seed": 20260960,
+      "stream_sha256": "caa9815eb91049a9ce68f78b64a3f1ee8d003aed9a4589e5f3b448a8653b16f4",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-019-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.716846,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-020",
+      "kind": "psp_degradation",
+      "seed": 20260961,
+      "stream_sha256": "4e5a79169fd13e30cedea186e4f2a896815be3587b29da7d823d3de75dfe45de",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-020-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.47255,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-021",
+      "kind": "psp_degradation",
+      "seed": 20260962,
+      "stream_sha256": "c5ee9b750a3952cdb785be29478b1e7d8924b6df0084dd6bd6d61b41eab83a33",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-021-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.963651,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-021-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.992475,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-022",
+      "kind": "psp_degradation",
+      "seed": 20260963,
+      "stream_sha256": "eaa7fa74907a72c77bbd06e176ddbd081106370710cf78ff4488014fd4df5fe4",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-022-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.559514,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-023",
+      "kind": "psp_degradation",
+      "seed": 20260964,
+      "stream_sha256": "ef22caf7f3adee127a3f3da027adf40187040d27cc0880fd1409250ac83df956",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-023-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.965015,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-024",
+      "kind": "psp_degradation",
+      "seed": 20260965,
+      "stream_sha256": "6f776dc46af96da3a5a7f276e291fd46e14b94646b916b3724358ae7d7148e55",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-024-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.549924,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-025",
+      "kind": "psp_degradation",
+      "seed": 20260966,
+      "stream_sha256": "1f469c10c681f1fa1a3d256a1793643a1e3c2aeecf7b0588ccf61eb7e5a62c69",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-025-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.069304,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-025-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.283129,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-026",
+      "kind": "psp_degradation",
+      "seed": 20260967,
+      "stream_sha256": "84c3b1208fae52ed11856c233406df26a8021ff630134e49c1e93aaec448ce8e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-026-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.790742,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-026-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.382509,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-027",
+      "kind": "psp_degradation",
+      "seed": 20260968,
+      "stream_sha256": "17d7d77a05a24af38802760c5adcdcf018b98ac607c9839f8c311f16d61b7196",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-027-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 0.982821,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-027-e1",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.799096,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-028",
+      "kind": "psp_degradation",
+      "seed": 20260969,
+      "stream_sha256": "0b2093e5114839e677c693b2ddc987634bddcffa35ffa1385b796e86ff79ffd8",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-028-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.323542,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-029",
+      "kind": "psp_degradation",
+      "seed": 20260970,
+      "stream_sha256": "239f8e7c7b8da3dc14ee2875db74c2eee38ea22f7ba57a6a95da849b64cbdf9b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-029-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.923377,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-030",
+      "kind": "psp_degradation",
+      "seed": 20260971,
+      "stream_sha256": "0e65a9fcb5be54d9886b219c3983e26b99f08c2765de4d782f9cdc058c89843a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-030-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.025362,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "psp:PSP_3"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-031",
+      "kind": "psp_degradation",
+      "seed": 20260972,
+      "stream_sha256": "c1520ac301b0129b78d364e06147f88fe446af8dd14b9f64bcb2423309479144",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-031-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.995248,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "psp:PSP_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-032",
+      "kind": "psp_degradation",
+      "seed": 20260973,
+      "stream_sha256": "713426b4ceca3457e8bcd754f942a5135e65169e174dadca91f6422dc22a6552",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-032-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.444038,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-033",
+      "kind": "psp_degradation",
+      "seed": 20260974,
+      "stream_sha256": "79ffa5e982e72424fdce957755ab32ab93ccb4b9b9056b0179501c8f896adda9",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-033-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.916416,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-034",
+      "kind": "psp_degradation",
+      "seed": 20260975,
+      "stream_sha256": "0e899381434d581e6df8deb3cec426dfea980353574f8e60f4866d22c12f3bf7",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-034-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.524318,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-035",
+      "kind": "psp_degradation",
+      "seed": 20260976,
+      "stream_sha256": "1634b7e27a6da263c27c71fb821a1bb1de3c95ff3e91237b09f347ac6ccc406e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-035-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.225509,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-psp_degradation-035-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.811073,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-036",
+      "kind": "psp_degradation",
+      "seed": 20260977,
+      "stream_sha256": "d1d4e43aca71ecb9c3c9671e2125ebe389a04d689dd91cf7f53d68cd5d094558",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-036-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.82943,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-037",
+      "kind": "psp_degradation",
+      "seed": 20260978,
+      "stream_sha256": "176a6d96b5e237046beec7acc5ed45600de56cea4d856e7f7dc6043634cd4688",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-037-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.559345,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-038",
+      "kind": "psp_degradation",
+      "seed": 20260979,
+      "stream_sha256": "b0bc6f8e09ef243055c485dedc5d3a0ffac4f5f543f28a1e74e3e3a87a163277",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-038-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.782432,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-psp_degradation-039",
+      "kind": "psp_degradation",
+      "seed": 20260980,
+      "stream_sha256": "e4f32b5e41e2774038e18c28e45998095e047ecc9a18752c524c1eaadca90986",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-psp_degradation-039-e0",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.800262,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-000",
+      "kind": "card_auth_spike",
+      "seed": 20260981,
+      "stream_sha256": "8e72c9495e8c43fc1904aa1fd47c674cb34e6f24e87873f514af7172682eb820",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-000-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.725647,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-001",
+      "kind": "card_auth_spike",
+      "seed": 20260982,
+      "stream_sha256": "d9561d180faf51eed0c1bd1f8dbe20fb5cfcb488c8f3878652752a4a7011ff05",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-001-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.201855,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-002",
+      "kind": "card_auth_spike",
+      "seed": 20260983,
+      "stream_sha256": "a1adb1e7de07a8f3730adae0bfb8c656315414854b36f17e794ba6d37769c3f3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-002-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.9097,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-003",
+      "kind": "card_auth_spike",
+      "seed": 20260984,
+      "stream_sha256": "1fbda68a5bd4d09dceb935df7da249474ec9c4c86d0d6378354d6881d65bf39a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-003-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.102972,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-003-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.932776,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-004",
+      "kind": "card_auth_spike",
+      "seed": 20260985,
+      "stream_sha256": "9b517e2fdfafa7970fb85290bc9c450b5000e7add4b54ee9e19dbeb93fe4512e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-004-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.83467,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-004-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.882509,
+          "primary_cell": "issuer:ISSUER_H|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-005",
+      "kind": "card_auth_spike",
+      "seed": 20260986,
+      "stream_sha256": "7e2d54f18df49e8e9640178b2765c96454bc1ca45dbbb013420a14c0a184022f",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-005-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.310337,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-006",
+      "kind": "card_auth_spike",
+      "seed": 20260987,
+      "stream_sha256": "99d3ab086d5b2e4b5f56843d99b792b2dfafa957b81f882c254b70962ed2ae7c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-006-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.079876,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-007",
+      "kind": "card_auth_spike",
+      "seed": 20260988,
+      "stream_sha256": "06d31a97fce3e57da8bac4752f4d85a23a81ed9e3837a218001544c7f970bdd3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-007-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.35754,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-008",
+      "kind": "card_auth_spike",
+      "seed": 20260989,
+      "stream_sha256": "c5977b7d27d14290f7d2104c8af927bb5312be639dcc533d6877246e30567b9b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-008-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.112408,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-008-e1",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.232803,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-009",
+      "kind": "card_auth_spike",
+      "seed": 20260990,
+      "stream_sha256": "8a4c5686f3674240cf805dae67a51240940297ee09a62215c190792ce7048739",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-009-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.820587,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-010",
+      "kind": "card_auth_spike",
+      "seed": 20260991,
+      "stream_sha256": "6026f2d277954505952a2d6cbe7b8a7bbdf874afb6f659001683dc9916ccc4f0",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-010-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.880864,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-011",
+      "kind": "card_auth_spike",
+      "seed": 20260992,
+      "stream_sha256": "a50ecfd8817899c0d05914a6a159bc23e652d435313b5233a23cdc31a3b99023",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-011-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.314248,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-012",
+      "kind": "card_auth_spike",
+      "seed": 20260993,
+      "stream_sha256": "34b840f6fa0f824791bf7262ae307fb4bf4f9131bb0d937367ad57269de7b437",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-012-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.052452,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-013",
+      "kind": "card_auth_spike",
+      "seed": 20260994,
+      "stream_sha256": "7c7242ad121bdabce04e1a1cec4951a8c08313c02889fba2f3d6c3f7fff78d1b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-013-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 0.850127,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-014",
+      "kind": "card_auth_spike",
+      "seed": 20260995,
+      "stream_sha256": "924c06e69aac8b5eed9c4533c1dfab5475bd6c8f563772e0c40187af1114acb1",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-014-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.912672,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-014-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.43827,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-015",
+      "kind": "card_auth_spike",
+      "seed": 20260996,
+      "stream_sha256": "345fb224d99b1e0750032006fceee25e89d99af5336bd301cba7217ecbdac141",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-015-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.965211,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-015-e1",
+          "mechanism": "psp_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.340008,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "psp:PSP_4"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-016",
+      "kind": "card_auth_spike",
+      "seed": 20260997,
+      "stream_sha256": "678542a1e8dad4101f9b7b328322ed0892cb5cf1a390d0afabd60dab8aced143",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-016-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.454603,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-017",
+      "kind": "card_auth_spike",
+      "seed": 20260998,
+      "stream_sha256": "002a7c22fba45dc6b21cad4473e187127da6c9eb5deedd06b6e32270bcf9708d",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-017-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.444936,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-018",
+      "kind": "card_auth_spike",
+      "seed": 20260999,
+      "stream_sha256": "18435a5902c9413fe56c343945460f547932d97e7b881b37710a8505a17349f7",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-018-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.285208,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-019",
+      "kind": "card_auth_spike",
+      "seed": 20261000,
+      "stream_sha256": "bc95cff034b8df768c9b4a734705f4bedb3206f6d40c67105e7c95d9b1334823",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-019-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.196686,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-020",
+      "kind": "card_auth_spike",
+      "seed": 20261001,
+      "stream_sha256": "3bd15682493b6ec8001ad48b33cfa339cd7f2b5270d96c5fb745770576f5b3aa",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-020-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.545305,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-021",
+      "kind": "card_auth_spike",
+      "seed": 20261002,
+      "stream_sha256": "7c9899c3971f61999db9f9f49c201c1bfe1973bc5b561614da4599c112ea8e2c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-021-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.025529,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-022",
+      "kind": "card_auth_spike",
+      "seed": 20261003,
+      "stream_sha256": "63ab805ee5e2554f7f8fe921c1641ec44ce0872d2ca077b122bbe97c5ea7892e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-022-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.008564,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-023",
+      "kind": "card_auth_spike",
+      "seed": 20261004,
+      "stream_sha256": "8ef34f7e23bf6f7825efdbe1c799bd59cbbf22133298eb6cd38013700f5ec6dd",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-023-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.693987,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-024",
+      "kind": "card_auth_spike",
+      "seed": 20261005,
+      "stream_sha256": "e204052232ac41d4b5a54b8a56b56fa6821f569c95feca3e41f15c66095fb277",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-024-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.686475,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-025",
+      "kind": "card_auth_spike",
+      "seed": 20261006,
+      "stream_sha256": "71c60bb19fc3ebf19cadfefea880a661dc7b3152baa3bef72ea1e683a4921456",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-025-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.509335,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-026",
+      "kind": "card_auth_spike",
+      "seed": 20261007,
+      "stream_sha256": "f431babfecb3afc5eec73c554674794e60c378b932eb3e2138ec2ba86d1fd667",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-026-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 2.943517,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-027",
+      "kind": "card_auth_spike",
+      "seed": 20261008,
+      "stream_sha256": "c7f3e6e357c54690804ffe31f3241b9b589e5ebce32f28cddba3f15e7563974e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-027-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.935358,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-027-e1",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.195471,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-028",
+      "kind": "card_auth_spike",
+      "seed": 20261009,
+      "stream_sha256": "50d9f6fe7e491b537d199466150cac5ca665ec823bfd6cd78c4b313fb7502a55",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-028-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.711318,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-029",
+      "kind": "card_auth_spike",
+      "seed": 20261010,
+      "stream_sha256": "61b70216214658394f9c911443829f34d5b42dfb0b57d6a2f7fe5812abd18bbd",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-029-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 0.867689,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "issuer:ISSUER_A"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-029-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.359734,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-030",
+      "kind": "card_auth_spike",
+      "seed": 20261011,
+      "stream_sha256": "3a18ae79bea13f70170ae7077788159bb6efc517cd30c8513424a62a58883f01",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-030-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 0.850892,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 1
+        },
+        {
+          "episode_id": "frozen-card_auth_spike-030-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.599234,
+          "primary_cell": "issuer:ISSUER_E|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-031",
+      "kind": "card_auth_spike",
+      "seed": 20261012,
+      "stream_sha256": "0ee2d7b752548770ca1cc4302a9d2d21763fdba373eda9f45590a280764a5730",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-031-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.707543,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-032",
+      "kind": "card_auth_spike",
+      "seed": 20261013,
+      "stream_sha256": "4365e18f61831819df8e148249f664384b1f692573c5e455520fb31ca319febe",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-032-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.317398,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-033",
+      "kind": "card_auth_spike",
+      "seed": 20261014,
+      "stream_sha256": "0798849b790b99a2f5c16e1695dac054e6296cc416a72feb3adc79cf21c516ff",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-033-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.848858,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "issuer:ISSUER_B"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-034",
+      "kind": "card_auth_spike",
+      "seed": 20261015,
+      "stream_sha256": "b6cfcefa168777c020130326b49329916e62bcfc5a81c38295cb5dbafbc3dc3f",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-034-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.092545,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "issuer:ISSUER_F"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-035",
+      "kind": "card_auth_spike",
+      "seed": 20261016,
+      "stream_sha256": "2155d73f65c5c9489c9229384c329d62445e7f7696e6f8f9d9d390b8dabf5307",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-035-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.024773,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-036",
+      "kind": "card_auth_spike",
+      "seed": 20261017,
+      "stream_sha256": "1c2205d76b512ba134ca567933c4d0404c7f5884041e34a6a4d6fc55f18a652c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-036-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.916415,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-037",
+      "kind": "card_auth_spike",
+      "seed": 20261018,
+      "stream_sha256": "33d08bce376c01daae6ec67d0ae9c1c808dbaead31372722b65893be77c7685c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-037-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.649428,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "issuer:ISSUER_E"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-038",
+      "kind": "card_auth_spike",
+      "seed": 20261019,
+      "stream_sha256": "063ada2b16859c102d10f21309595890ed8443a594bd6761a5c500f38c12a56d",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-038-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.424496,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-card_auth_spike-039",
+      "kind": "card_auth_spike",
+      "seed": 20261020,
+      "stream_sha256": "336830928a6cc7546ab3e4208ee4c568adc6c2ae9fa4d7038a6f9789710b60a7",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-card_auth_spike-039-e0",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.094763,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-000",
+      "kind": "upi_network_degradation",
+      "seed": 20261021,
+      "stream_sha256": "80aa1b4a08b239510b79aa0eae3917747be32eb7f47765db82f8523bad0f280c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-000-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.85697,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-001",
+      "kind": "upi_network_degradation",
+      "seed": 20261022,
+      "stream_sha256": "4f05a6109abb0085f7e1685d47d84cf82bd6e88426e275105449c7cdd5e5d6a6",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-001-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.804804,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-002",
+      "kind": "upi_network_degradation",
+      "seed": 20261023,
+      "stream_sha256": "f161eb4718e9d8e7e1723bd169b376f8a0969240b538141d9b28f2415c40f26c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-002-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.112441,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-003",
+      "kind": "upi_network_degradation",
+      "seed": 20261024,
+      "stream_sha256": "5cd2795243049d0c2b1c638581bcf482418412bdce9a7095eca4dd7761c33b49",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-003-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.880476,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-004",
+      "kind": "upi_network_degradation",
+      "seed": 20261025,
+      "stream_sha256": "1d10aa2a7ba1a6f1b3a8a812ac5ccfe48977bdcc6193ea1ad789b0e8dc32f882",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-004-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.113283,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-005",
+      "kind": "upi_network_degradation",
+      "seed": 20261026,
+      "stream_sha256": "92a147f82af74f21c13d5336ee7a477ce96a4c451d4658013902f46aa355651a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-005-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.18503,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-006",
+      "kind": "upi_network_degradation",
+      "seed": 20261027,
+      "stream_sha256": "31d95d62e65ccc89d217104e995cbe856e903d5cea6ab7e28fdebd7783a2cf7c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-006-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.916968,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-007",
+      "kind": "upi_network_degradation",
+      "seed": 20261028,
+      "stream_sha256": "d90a586c9abbdbc6eeb0cb32ef8d38de77930e5fe91b4c4c1210be44f25610f7",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-007-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.172074,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-008",
+      "kind": "upi_network_degradation",
+      "seed": 20261029,
+      "stream_sha256": "b54f3b7bc88809b1a6d0300b457cc9d2d8a840b67939def8eef7953138a39f06",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-008-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.913402,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-009",
+      "kind": "upi_network_degradation",
+      "seed": 20261030,
+      "stream_sha256": "f374be87e32528127ef81cdabe98f7851e53ad6531b685dd0669cd8d90b92341",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-009-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.148689,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-upi_network_degradation-009-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.849585,
+          "primary_cell": "issuer:ISSUER_C|netbanking",
+          "affected_nodes": [
+            "issuer:ISSUER_C"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-010",
+      "kind": "upi_network_degradation",
+      "seed": 20261031,
+      "stream_sha256": "7e5c0f807afd21713eff2c71307d591ae3018c8b65895b797123930eec307f02",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-010-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.056139,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-011",
+      "kind": "upi_network_degradation",
+      "seed": 20261032,
+      "stream_sha256": "e5aab259387141b6770aff849f43b3806510b22c8261f4455246d33fe0c5f7ca",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-011-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.137614,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-012",
+      "kind": "upi_network_degradation",
+      "seed": 20261033,
+      "stream_sha256": "90d1b08daca8bac47b421373d3ce64319e884bde4d537ee348bc5de9e4d0b5f3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-012-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.574745,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-013",
+      "kind": "upi_network_degradation",
+      "seed": 20261034,
+      "stream_sha256": "288a42e4fd2ef31238aab7e1babcd09dbf0a834c2e8a5fd137935447218beff0",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-013-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.072593,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-014",
+      "kind": "upi_network_degradation",
+      "seed": 20261035,
+      "stream_sha256": "1b12e93a6e7596a76933e6a8ac849f126644822e8fa9689d2674c7d617687cd3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-014-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.348502,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-015",
+      "kind": "upi_network_degradation",
+      "seed": 20261036,
+      "stream_sha256": "9ad57c6dcac4aa19ef7540c60c24aad399d4f3ce8ec05494760cfcf7afd39034",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-015-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.149169,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-016",
+      "kind": "upi_network_degradation",
+      "seed": 20261037,
+      "stream_sha256": "1de916d912c385a5dee768ab85f5953f7a2b0cfc7432189e745ecd9bbd5a35bd",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-016-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.615045,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-017",
+      "kind": "upi_network_degradation",
+      "seed": 20261038,
+      "stream_sha256": "0b429c935ff53ac27c5648babda77441939b756d04f3904a53bcb86de7cc09ed",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-017-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.751948,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-018",
+      "kind": "upi_network_degradation",
+      "seed": 20261039,
+      "stream_sha256": "923a955b011eda5425438282229b716067cee1bf586c5ab8f8f1da06ddc23dfc",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-018-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.043725,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-019",
+      "kind": "upi_network_degradation",
+      "seed": 20261040,
+      "stream_sha256": "2fd8675b131293dc741bfc978f5fcee9123d6d60fb274e2320fd055bb796eca9",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-019-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.152533,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-020",
+      "kind": "upi_network_degradation",
+      "seed": 20261041,
+      "stream_sha256": "b7a380663c57c17affec27ae05674166ad25ad737d8dcb145d8931aa4bb4bdae",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-020-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 0.86687,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-upi_network_degradation-020-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 2.099067,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "issuer:ISSUER_D"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-021",
+      "kind": "upi_network_degradation",
+      "seed": 20261042,
+      "stream_sha256": "6f26b0aa42dc6038b55e9ec088481ada2d251a5eb69016c8ff836c89bbae4250",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-021-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.83579,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-022",
+      "kind": "upi_network_degradation",
+      "seed": 20261043,
+      "stream_sha256": "909c92f81ef4b2d6056841281fcaf0b530277fb9db7b1343e9cfa6f6815a7906",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-022-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.559444,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-023",
+      "kind": "upi_network_degradation",
+      "seed": 20261044,
+      "stream_sha256": "cbef79a385177ad2aa7110f88d61ef41a5d8d4959f631b0eb25ef6ec836964ab",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-023-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.546827,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-024",
+      "kind": "upi_network_degradation",
+      "seed": 20261045,
+      "stream_sha256": "c4704675a7c997372ba08f5d52d4243e342db3adcea6548e98df3f0b5576901a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-024-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.999301,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-025",
+      "kind": "upi_network_degradation",
+      "seed": 20261046,
+      "stream_sha256": "949dc3ce247f1747ac1f7715c8068ac0ed84502b60c4fe96d2ec06a8e73465a5",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-025-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.596506,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-upi_network_degradation-025-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "propagating",
+          "severity": 1.144581,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-026",
+      "kind": "upi_network_degradation",
+      "seed": 20261047,
+      "stream_sha256": "7f072f35e5cba9a32c07a478aa53610cb561ac772e6e891c9fc4f5f11cf694e2",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-026-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.868709,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-027",
+      "kind": "upi_network_degradation",
+      "seed": 20261048,
+      "stream_sha256": "4966782b260ced7280219db66fb36d77df0f0aef3f9218429f5632168066265c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-027-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.926943,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-upi_network_degradation-027-e1",
+          "mechanism": "card_auth_spike",
+          "onset_arm": "simultaneous",
+          "severity": 1.66168,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "issuer:ISSUER_H"
+          ],
+          "n_affected_cells": 1
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-028",
+      "kind": "upi_network_degradation",
+      "seed": 20261049,
+      "stream_sha256": "5f57281fed18c32a87e88482fb6ecdfeb9f636633e949d48779017a378345ede",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-028-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.098964,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-upi_network_degradation-028-e1",
+          "mechanism": "issuer_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.472013,
+          "primary_cell": "issuer:ISSUER_G|card",
+          "affected_nodes": [
+            "issuer:ISSUER_G"
+          ],
+          "n_affected_cells": 3
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-029",
+      "kind": "upi_network_degradation",
+      "seed": 20261050,
+      "stream_sha256": "af4d696bfc9cbd17802808a1df443e3105bab341ff3a1af1e07c353675bb409b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-029-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.131233,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-030",
+      "kind": "upi_network_degradation",
+      "seed": 20261051,
+      "stream_sha256": "64ef25ab261fadb601507267d118c1ee623d8914b07bc542c6a469f20b8c0848",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-030-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.308331,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-031",
+      "kind": "upi_network_degradation",
+      "seed": 20261052,
+      "stream_sha256": "6c7a6edd9ed0c4579ef177e80417ebedaab92dbad0f0f1075a911e9b95af7ecc",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-031-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 2.560896,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-032",
+      "kind": "upi_network_degradation",
+      "seed": 20261053,
+      "stream_sha256": "9a356c497a2e752fb5d4b2252e9f2c69536efb57ab6b26691626a05f2e4c8121",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-032-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.470019,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-033",
+      "kind": "upi_network_degradation",
+      "seed": 20261054,
+      "stream_sha256": "b72a49ca35f8bf0837e1992da03c784f2aa018a9583e57e6d904795b41cbc8fa",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-033-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 0.869194,
+          "primary_cell": "issuer:ISSUER_F|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-034",
+      "kind": "upi_network_degradation",
+      "seed": 20261055,
+      "stream_sha256": "f293b894c61066b479005c2c14a706fde872a0b18b29ddbd309bf32fb6a0fa5e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-034-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "simultaneous",
+          "severity": 1.857236,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-035",
+      "kind": "upi_network_degradation",
+      "seed": 20261056,
+      "stream_sha256": "05279aa4e098eb0ee1b36cf5e6d667d6107b06310420cc76564b2271b030ff6f",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-035-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.142713,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        },
+        {
+          "episode_id": "frozen-upi_network_degradation-035-e1",
+          "mechanism": "psp_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.660071,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "psp:PSP_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-036",
+      "kind": "upi_network_degradation",
+      "seed": 20261057,
+      "stream_sha256": "617ab55442533db38915b6e885ad3ce71de3c20df8408265dea6daba0e42fa53",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-036-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.886068,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-037",
+      "kind": "upi_network_degradation",
+      "seed": 20261058,
+      "stream_sha256": "1ea77008d8719f343e12bca8c5e9f8d8abb025b827d73374dd4202addf13c9bf",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-037-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.972952,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-038",
+      "kind": "upi_network_degradation",
+      "seed": 20261059,
+      "stream_sha256": "3bfdc0a9e60a33ca8e83917047fcc2b3cb011b7eb001800ccff92f450435c7b0",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-038-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 2.183369,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "network:NET_1"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-upi_network_degradation-039",
+      "kind": "upi_network_degradation",
+      "seed": 20261060,
+      "stream_sha256": "3a37ca9ffdf9a66d8300ae81cbcf42eb5ba33c4fc84804e3ed531f818834899f",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-upi_network_degradation-039-e0",
+          "mechanism": "upi_network_degradation",
+          "onset_arm": "propagating",
+          "severity": 1.42147,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "network:NET_2"
+          ],
+          "n_affected_cells": 4
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-000",
+      "kind": "none",
+      "seed": 20261061,
+      "stream_sha256": "e577c15f8576c3d244c238facc6b4122e0e7b13e99462ab3dffb6c44b2ae184e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-000-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-001",
+      "kind": "none",
+      "seed": 20261062,
+      "stream_sha256": "e40b1cf9b0b45496e56a234236ac0f0997fbad5187c9f4ccaf12628825dda629",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-001-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-002",
+      "kind": "none",
+      "seed": 20261063,
+      "stream_sha256": "a27ed512f34b32a7543fefefeaf3eebaf5e87579b4ab1158cc94323ff58a3a9b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-002-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-003",
+      "kind": "none",
+      "seed": 20261064,
+      "stream_sha256": "226119e31f897706cc31c05bafba69bdbb6dd113fd43792a7be0386e5665fa9c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-003-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-004",
+      "kind": "none",
+      "seed": 20261065,
+      "stream_sha256": "03c8eb134659b417d4ec48414d33b94b33783b06e9701401300c3f905195ba0a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-004-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-005",
+      "kind": "none",
+      "seed": 20261066,
+      "stream_sha256": "91d6090015456b648fab5ec29ebb59721de43d549816b9c6a507ee408cb818da",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-005-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-006",
+      "kind": "none",
+      "seed": 20261067,
+      "stream_sha256": "eb51a2c0a46658d7a3c1deb988f8554f061d4fd87c25d910846cc7d97369b7cf",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-006-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-007",
+      "kind": "none",
+      "seed": 20261068,
+      "stream_sha256": "d3b7473d552579bb15414df400b38a000e0e57ce2e0782a1e917e5551baecabd",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-007-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-008",
+      "kind": "none",
+      "seed": 20261069,
+      "stream_sha256": "97571415995cb0fcea55e058a75f084586c557b95ad61f66e03cd06cc452abbc",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-008-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-009",
+      "kind": "none",
+      "seed": 20261070,
+      "stream_sha256": "0e90afd738b016b86153c532be8b7a98217d9cfaf7c4b83a36d8e7d8b77ab02c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-009-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-010",
+      "kind": "none",
+      "seed": 20261071,
+      "stream_sha256": "48980c0eb903b0b36f2f4ee49ec9056307b333d93be1ac345faad5510dc4d67b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-010-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-011",
+      "kind": "none",
+      "seed": 20261072,
+      "stream_sha256": "3defce0dd5d46a1710d5669f86848410699786026863abbe70305cc76fdba706",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-011-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-012",
+      "kind": "none",
+      "seed": 20261073,
+      "stream_sha256": "44068adb4a3e2b30331d509a58aba3a54d835cefeda19e6d3a8e645f4e86034c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-012-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-013",
+      "kind": "none",
+      "seed": 20261074,
+      "stream_sha256": "13a6f2c0198b3e22a233dc4791c0d853511c67a71583995430869dbb5787b4ee",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-013-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-014",
+      "kind": "none",
+      "seed": 20261075,
+      "stream_sha256": "c2c4c1627f45bb182ad6d4919f419287e7e4a3ccdec5dfdf19422937cd6a5f1e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-014-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-015",
+      "kind": "none",
+      "seed": 20261076,
+      "stream_sha256": "803c13320982a628ec644ee0982145a2c30deed6a9c1c0a3b44561d47ffe94b4",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-015-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-016",
+      "kind": "none",
+      "seed": 20261077,
+      "stream_sha256": "dc06cf0a0af619edbe4c919851df3773c15e963f29ec3ad18d45a5e4a3b14854",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-016-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-017",
+      "kind": "none",
+      "seed": 20261078,
+      "stream_sha256": "6e2d57bc4ae894ccf8a2b1a2362c8a60a459c4af2be412dcd14cb1651204adc7",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-017-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-018",
+      "kind": "none",
+      "seed": 20261079,
+      "stream_sha256": "8282709aafe61eb881d0ca55e05eb8f6ed3d65df33cecc06a8d0ebd24f46c5e0",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-018-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-019",
+      "kind": "none",
+      "seed": 20261080,
+      "stream_sha256": "2ada2f9331c034fe9904cbbd5367d45d984ead3daa32e4000be90e770e017b55",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-019-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-020",
+      "kind": "none",
+      "seed": 20261081,
+      "stream_sha256": "f4f52674661f9bb71cc91ab84b17203b60d0ab43d3de63734a737fa17c8f9ac0",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-020-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-021",
+      "kind": "none",
+      "seed": 20261082,
+      "stream_sha256": "006a9ef8de31138dd52fc3b29cbfe47a62a96b459681c3bc1b939b60d51dab43",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-021-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-022",
+      "kind": "none",
+      "seed": 20261083,
+      "stream_sha256": "4201f8d35b9789100d6d1585362f806959f202aceb1d254db25590d61da7555f",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-022-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-023",
+      "kind": "none",
+      "seed": 20261084,
+      "stream_sha256": "d00563f8c662ccfdf972088dadf2e03940b822782ee248370ef3d6e5b67e7945",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-023-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-024",
+      "kind": "none",
+      "seed": 20261085,
+      "stream_sha256": "5ed421476f7780be874223e832208ce5ee15d10e2040a95ac48d78c358777118",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-024-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-025",
+      "kind": "none",
+      "seed": 20261086,
+      "stream_sha256": "c3b4e538313218a9992ad82b3a449feefce6871beb84b5b7d282fa2470680657",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-025-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-026",
+      "kind": "none",
+      "seed": 20261087,
+      "stream_sha256": "c2b5cd17c7942c541032f80f77a2e82eec8d7a4637622ef9706187adf318f7cc",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-026-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-027",
+      "kind": "none",
+      "seed": 20261088,
+      "stream_sha256": "cadecfb7c96d1ebbab8b8432e34080a97e556ac64601f41fad41694ea49ca893",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-027-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-028",
+      "kind": "none",
+      "seed": 20261089,
+      "stream_sha256": "78456dd5f91f295794290182b747e0aa82d0207af42255278ecc6826d6fb29e3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-028-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-029",
+      "kind": "none",
+      "seed": 20261090,
+      "stream_sha256": "4b7b970fca9df0368f2334d2d727bb9000d209a61b15a4bc7a6a212af57a5d9b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-029-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-030",
+      "kind": "none",
+      "seed": 20261091,
+      "stream_sha256": "4613ed5005ee803ff0e58c77cdb76f1adb38a5586200e5af8556678a37c5cf0f",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-030-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-031",
+      "kind": "none",
+      "seed": 20261092,
+      "stream_sha256": "4fabed46b030d0ebe3a9678d6f2d27ab7c26801b6cc84f14298335eb73a64414",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-031-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-032",
+      "kind": "none",
+      "seed": 20261093,
+      "stream_sha256": "ce65e84b47e89d16247e9c44a995cec98df08afad7dab4345ac69ac3d53cb2f4",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-032-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-033",
+      "kind": "none",
+      "seed": 20261094,
+      "stream_sha256": "fd3958f6161a80423c92519f4f7058aab3d5094ee8347408e27dfa9bbed32d9b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-033-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-034",
+      "kind": "none",
+      "seed": 20261095,
+      "stream_sha256": "a9d3e411e472f86789367f0bf560af2156560f1e69242b78dcfe7ab732572d93",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-034-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-035",
+      "kind": "none",
+      "seed": 20261096,
+      "stream_sha256": "85c7d58b1295b7639ded60ec6df018d9aca6897abb81d88ab9cc24a33fa0a672",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-035-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-036",
+      "kind": "none",
+      "seed": 20261097,
+      "stream_sha256": "5d6e78c14ab16eb296da8344cd97cfb609be2790ed7e0c7e66157b74ed8baaf9",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-036-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-037",
+      "kind": "none",
+      "seed": 20261098,
+      "stream_sha256": "3b46c17c9be1cfa5ceaa9d4dfad7c60d6ffd5e02f8f19390c38244826dc10ac3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-037-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-038",
+      "kind": "none",
+      "seed": 20261099,
+      "stream_sha256": "219afbd378bc114597a3fbad5582fe42e2f7a68c91d1cff65df1b40d4fbee6a3",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-038-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-039",
+      "kind": "none",
+      "seed": 20261100,
+      "stream_sha256": "a29fa68515266de6298da2c7de9520ec9197e5bc3ab9464a24f89674ac076318",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-039-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-040",
+      "kind": "none",
+      "seed": 20261101,
+      "stream_sha256": "35add315cec64c92a78289d263bb7d3d5afec7c16c69c0909d3cada576f74f27",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-040-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-041",
+      "kind": "none",
+      "seed": 20261102,
+      "stream_sha256": "3bd49525dc53306115c692c731ae51bc4a68132689b47be7a58f29fcccb24cff",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-041-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-042",
+      "kind": "none",
+      "seed": 20261103,
+      "stream_sha256": "f19a3a14790a03c49618e0d473b917a30b2046a13efa64fe2fe7605ae5d01679",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-042-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-043",
+      "kind": "none",
+      "seed": 20261104,
+      "stream_sha256": "56e3e4bd1417e5ed3af90c2b38384ae259f9446039c9286dc19904d872bd1702",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-043-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-044",
+      "kind": "none",
+      "seed": 20261105,
+      "stream_sha256": "9add4f956603cedc4c47b266ea5386cae7113ea4bfb5b717fa9eac8cacc501be",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-044-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-045",
+      "kind": "none",
+      "seed": 20261106,
+      "stream_sha256": "2df19dbc49587964fda968291c99ded1a97d9c19c3e002fdc4a4c8c6cd1e6952",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-045-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-046",
+      "kind": "none",
+      "seed": 20261107,
+      "stream_sha256": "05bad3d9eef5dd296fa96054d65b5c100a3d345b097b7fbaa4e887b063753bcd",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-046-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-none-047",
+      "kind": "none",
+      "seed": 20261108,
+      "stream_sha256": "803005e587c4c058bfff8c8081c3a61e4156a99d5f3606c4db56a890569e51ff",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-none-047-none",
+          "mechanism": "none",
+          "onset_arm": "simultaneous",
+          "severity": 0.0,
+          "primary_cell": null,
+          "affected_nodes": [],
+          "n_affected_cells": 0
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-000",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261109,
+      "stream_sha256": "6d43320fd0c01e957a00efd9ae8dcd22723381b11813b9eeca90471fdf80b637",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-000-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "simultaneous",
+          "severity": 2.474467,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-001",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261110,
+      "stream_sha256": "20c5c9653f2f8a6295ddb07e1af044180325ec0db7c43023b191f230bd89805a",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-001-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "simultaneous",
+          "severity": 1.11266,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-002",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261111,
+      "stream_sha256": "73bfb897c55c37d43708666a0c47cd3c9d44fca49e40c1d26ce1138bc73f35c9",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-002-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "simultaneous",
+          "severity": 2.97148,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-003",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261112,
+      "stream_sha256": "07d6d46e7c579f0c13c6d7dbfbf74d7375ea87b78191147e31c32f17bc810f49",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-003-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "propagating",
+          "severity": 1.0194,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-004",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261113,
+      "stream_sha256": "fcf50539feaf7a9c5db7d3e85dca6788827bb9348ea33a204ea14c6ac29a5c56",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-004-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "propagating",
+          "severity": 2.642756,
+          "primary_cell": "issuer:ISSUER_B|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-005",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261114,
+      "stream_sha256": "192357c063d2876cd1093c989749e24f70b14b46e61ae27ff2d94315a50800de",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-005-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "propagating",
+          "severity": 1.165814,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-006",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261115,
+      "stream_sha256": "08abbd216acf652c0743e9b15c34ccbee0efbe86de3d6f6ef2f2597f4439135c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-006-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "propagating",
+          "severity": 1.507255,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-007",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261116,
+      "stream_sha256": "0acc46bdae8d27e7174048b843d3721bc21014ffdddd3bceb808c5c389a4047b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-007-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "propagating",
+          "severity": 1.720224,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-008",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261117,
+      "stream_sha256": "0832548d00a0795e9fcd89bb912b4ec8ebdfd827a0bb3983af55bec217f8e246",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-008-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "simultaneous",
+          "severity": 2.544776,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-009",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261118,
+      "stream_sha256": "43767a42a0e25638034954bdc5d6b50d47ba103ac6da1ce39b630502a807e7f4",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-009-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "propagating",
+          "severity": 1.988346,
+          "primary_cell": "issuer:ISSUER_G|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_beneficiary_credit_delay-010",
+      "kind": "ood_beneficiary_credit_delay",
+      "seed": 20261119,
+      "stream_sha256": "dc61536604a075d68f779909dcc873ebc631b556fe48f9e8ed8fafcbf14fcb9b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_beneficiary_credit_delay-010-e0",
+          "mechanism": "ood_beneficiary_credit_delay",
+          "onset_arm": "propagating",
+          "severity": 1.43957,
+          "primary_cell": "issuer:ISSUER_C|upi",
+          "affected_nodes": [
+            "global:beneficiary"
+          ],
+          "n_affected_cells": 8
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-000",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261120,
+      "stream_sha256": "5ebd372d3e882364ca3c48b699316b57ad429143368cccb71d047798064eea24",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-000-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "simultaneous",
+          "severity": 1.129638,
+          "primary_cell": "issuer:ISSUER_A|upi",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-001",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261121,
+      "stream_sha256": "e2545377b692908553cf6239f23c4ac151d2403370ae4e08114d15f6e08baa2c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-001-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "simultaneous",
+          "severity": 2.924919,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-002",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261122,
+      "stream_sha256": "fbfee34ccd7c191c7738858f82b10d3a449f773ae5dfa06d7612770156f78bfd",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-002-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "simultaneous",
+          "severity": 2.153447,
+          "primary_cell": "issuer:ISSUER_E|netbanking",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-003",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261123,
+      "stream_sha256": "360714b03c0bccddc6676955a33edadc861e9d0beea5e15ddea94eca46b9bd74",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-003-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "propagating",
+          "severity": 1.320808,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-004",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261124,
+      "stream_sha256": "7303e7561ff9c60030a6fb2e9665e8e70ba2a6ba307c3c13c4cf2fca267ad291",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-004-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "propagating",
+          "severity": 2.918734,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-005",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261125,
+      "stream_sha256": "fe5e19c69638db9d6bb4c8bf3ab1b745c917bb9b5f41e7bdeb15199d42c8f970",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-005-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "propagating",
+          "severity": 0.881801,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-006",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261126,
+      "stream_sha256": "e04fe2c50fee60e4f874b941a4e988d4528799ee3641e48558b60485afe12035",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-006-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "propagating",
+          "severity": 0.850903,
+          "primary_cell": "issuer:ISSUER_B|netbanking",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-007",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261127,
+      "stream_sha256": "1aaee7a5e4d38a2278fe84204d38d68a8aa7522ae859936c73d1f2c0ad7047a9",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-007-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "propagating",
+          "severity": 1.152253,
+          "primary_cell": "issuer:ISSUER_G|netbanking",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-008",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261128,
+      "stream_sha256": "8696c81f2b50a003ba92afa9169a17a8f5cda81abb11f4cc2c84ea1ad9ec04d5",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-008-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "simultaneous",
+          "severity": 2.287242,
+          "primary_cell": "issuer:ISSUER_H|upi",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-009",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261129,
+      "stream_sha256": "ad67426199078e0ad64d33634d92d5861f790a2de92124845f7a41f8ec930f1c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-009-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "propagating",
+          "severity": 1.151847,
+          "primary_cell": "issuer:ISSUER_B|netbanking",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_checkout_config_regression-010",
+      "kind": "ood_checkout_config_regression",
+      "seed": 20261130,
+      "stream_sha256": "93523bd35e7cfb3d4e854770db623ddecf3f7882e7d9a0aba52a4596592e1976",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_checkout_config_regression-010-e0",
+          "mechanism": "ood_checkout_config_regression",
+          "onset_arm": "propagating",
+          "severity": 1.5102,
+          "primary_cell": "issuer:ISSUER_H|card",
+          "affected_nodes": [
+            "global:checkout"
+          ],
+          "n_affected_cells": 24
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-000",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261131,
+      "stream_sha256": "5e03b931629ce37ee2eef03d6c92a0ba3e2b166edfddcaf61a9b594acc83e69d",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-000-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "propagating",
+          "severity": 2.29908,
+          "primary_cell": "issuer:ISSUER_E|card",
+          "affected_nodes": [
+            "unaligned:ISSUER_E+ISSUER_F+ISSUER_H"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-001",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261132,
+      "stream_sha256": "70e2320845f17e48fe74d8b8f71c5db8a6f196b36a8709dd4f22e3547458d17b",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-001-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "propagating",
+          "severity": 2.766449,
+          "primary_cell": "issuer:ISSUER_E|upi",
+          "affected_nodes": [
+            "unaligned:ISSUER_C+ISSUER_E+ISSUER_F"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-002",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261133,
+      "stream_sha256": "5398c4e8011e2c818ae2bd19995642cdcfa38887751ec356b24d51778062b3ad",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-002-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "propagating",
+          "severity": 2.534462,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "unaligned:ISSUER_B+ISSUER_C+ISSUER_F"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-003",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261134,
+      "stream_sha256": "c2a1936c12dee2a65880cf88ef80ea1642b50f927fe72d0ccc0fdeed5ad3bac2",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-003-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "simultaneous",
+          "severity": 2.580914,
+          "primary_cell": "issuer:ISSUER_C|card",
+          "affected_nodes": [
+            "unaligned:ISSUER_B+ISSUER_C+ISSUER_H"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-004",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261135,
+      "stream_sha256": "e4137e2c0f824b416b6a2c77df9b243a6acbe5e7d6f0ecfb1c95b24ffd28e4a9",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-004-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "propagating",
+          "severity": 1.071573,
+          "primary_cell": "issuer:ISSUER_D|card",
+          "affected_nodes": [
+            "unaligned:ISSUER_D+ISSUER_F+ISSUER_H"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-005",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261136,
+      "stream_sha256": "263b1679b9e286bfed435ef959c7d446f491ea65a10d2daf54d7aa52a4f58ec2",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-005-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "simultaneous",
+          "severity": 1.655467,
+          "primary_cell": "issuer:ISSUER_F|card",
+          "affected_nodes": [
+            "unaligned:ISSUER_C+ISSUER_D+ISSUER_F"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-006",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261137,
+      "stream_sha256": "f2f8f7d89a94691a075ef15affe4623eb4cf685c2574d812e702aef7e1e86ddc",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-006-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "simultaneous",
+          "severity": 1.963368,
+          "primary_cell": "issuer:ISSUER_B|card",
+          "affected_nodes": [
+            "unaligned:ISSUER_B+ISSUER_E+ISSUER_H"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-007",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261138,
+      "stream_sha256": "56dff6f4dedbb61916bddb73ef8a8ae1c138078a4406c6f44a28858995730d32",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-007-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "simultaneous",
+          "severity": 2.535037,
+          "primary_cell": "issuer:ISSUER_A|card",
+          "affected_nodes": [
+            "unaligned:ISSUER_A+ISSUER_D+ISSUER_G"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-008",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261139,
+      "stream_sha256": "fa0ec43a19beb92fa55a4879f0302474960c89022c980f9f16dcd220e0f5e58e",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-008-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "propagating",
+          "severity": 2.441928,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "unaligned:ISSUER_A+ISSUER_D+ISSUER_H"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    },
+    {
+      "scenario_id": "frozen-ood_partial_psp_timeout-009",
+      "kind": "ood_partial_psp_timeout",
+      "seed": 20261140,
+      "stream_sha256": "8f485058c034dec309d923f549d3858ebddf10588c2984108ce830783f36b05c",
+      "n_windows": 2592,
+      "n_cells": 24,
+      "episodes": [
+        {
+          "episode_id": "frozen-ood_partial_psp_timeout-009-e0",
+          "mechanism": "ood_partial_psp_timeout",
+          "onset_arm": "propagating",
+          "severity": 1.496171,
+          "primary_cell": "issuer:ISSUER_D|upi",
+          "affected_nodes": [
+            "unaligned:ISSUER_A+ISSUER_D+ISSUER_E"
+          ],
+          "n_affected_cells": 6
+        }
+      ]
+    }
+  ]
+}

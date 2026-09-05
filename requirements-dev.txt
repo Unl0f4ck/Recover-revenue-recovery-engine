@@ -1,0 +1,9 @@
+# Direct dependencies used for local verification. Transitive packages are
+# resolved by pip; this is a tested constraints list, not a full lockfile.
+fastapi==0.115.0
+uvicorn==0.30.6
+httpx==0.28.1
+numpy==2.2.6
+scipy==1.14.1
+PyYAML==6.0.3
+pytest==9.0.3

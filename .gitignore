@@ -1,0 +1,60 @@
+# FIRST FILE — SPEC §15.2. Nothing is committed before this exists.
+
+# Secrets. The Razorpay test secret must never touch git history.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets/
+
+# Disposable dev data. data/frozen/ IS committed (SPEC §13).
+data/dev/
+# The simulated batch. Regenerable exactly from its seed
+# (`python -m scripts.simulate_batch`), so committing three thousand generated
+# ledger rows would add weight without adding evidence -- and a synthetic
+# ledger sitting in the repo next to the real one is precisely the confusion
+# this project keeps working to avoid.
+data/sim/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Tooling / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local-only publishable test key for the Checkout demo.
+ui/demo/config.js
+
+# scratch ledgers -- dry runs and projections, regenerated on every build
+data/live/dunning_ledger.dryrun.jsonl
+data/live/dunning_ledger.projection.jsonl
+data/live/notifications.projection.jsonl
+data/live/suppression.projection.jsonl
+
+# Redirect contacts are real personal addresses and phone numbers.
+config/redirect.local.yaml
+
+# Local books this project holds: seeded, regenerable, not evidence.
+data/live/traffic.jsonl
+data/live/acme_subs.*.jsonl
+data/console/
+data/live/*.sqlite3*
+data/live/*.dryrun*.jsonl
+data/live/*.lock
+data/live/service_preview*.jsonl
+dist/
+build/
+artifacts/

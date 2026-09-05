@@ -1,0 +1,9 @@
+.git
+.env
+.env.*
+config/redirect.local.yaml
+data
+**/__pycache__
+.pytest_cache
+.venv
+venv

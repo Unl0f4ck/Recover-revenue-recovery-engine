@@ -1,0 +1,13 @@
+Payment ID,Amount,Failure Reason,Email,Date,Bank,Method
+pay_csv_001,45000,insufficient_funds,asha@example.com,2026-08-20,HDFC,card
+pay_csv_002,12000,card_expired,bhavin@example.com,2026-08-20,ICICI,card
+pay_csv_003,8750,gateway_technical_error,chetan@example.com,2026-08-21,SBI,upi
+pay_csv_004,32000,otp_attempts_exceeded,divya@example.com,2026-08-21,AXIS,card
+pay_csv_005,6400,invalid_vpa,esha@example.com,2026-08-22,,upi
+pay_csv_006,21500,insufficient_funds,farhan@example.com,2026-08-22,HDFC,netbanking
+pay_csv_007,9900,payment_cancelled,gita@example.com,2026-08-23,KOTAK,card
+pay_csv_008,54000,bank_not_available,harsh@example.com,2026-08-23,SBI,netbanking
+pay_csv_009,3100,debit_instrument_blocked,isha@example.com,2026-08-24,ICICI,card
+pay_csv_010,17800,some_code_we_have_never_seen,jai@example.com,2026-08-24,YES,card
+pay_csv_011,not-a-number,insufficient_funds,kiran@example.com,2026-08-24,HDFC,card
+,7700,insufficient_funds,lata@example.com,2026-08-25,HDFC,card

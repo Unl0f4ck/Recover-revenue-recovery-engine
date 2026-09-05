@@ -1,0 +1,5 @@
+reference,amount,kind,customer_ref,created_at
+order_review_demo,10000,checkout_abandoned,buyer@example.invalid,2026-09-05
+inv_review_demo,25000,overdue_receivable,finance@example.invalid,2026-08-01
+order_review_demo,10000,checkout_abandoned,buyer@example.invalid,2026-09-05
+order_invalid,-100,payment_failure,invalid@example.invalid,2026-09-05

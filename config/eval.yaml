@@ -1,0 +1,62 @@
+# Thresholds, seeds, matching params. SPEC §2, §13.
+# PRE-REGISTERED: every value here is hashed in PREREGISTRATION.md before
+# data/frozen/ is generated. Nothing below may move after the tag.
+
+detector:
+  kappa: 1.6
+  # FROZEN Day 6. Chosen by SIMULATED RECOVERED VALUE on the dev pool, which is
+  # the actual objective -- recall and precision trade against each other with
+  # no exchange rate, so neither can settle this alone. §13 step 3 schedules
+  # exactly this decision here. Sweep in data/dev/h_sweep.json, 64 scenarios
+  # evaluated PAIRED at every h (same streams, same fitted baselines).
+  #
+  #   h     B2 net Rs   recall   precision
+  #   4.0     382,518    56.5%     1.6%
+  #   5.5     400,084    48.4%     5.3%   <- chosen
+  #   7.0     373,052    46.8%    14.8%
+  #   9.0     249,435    38.7%    22.9%
+  #  22.0     -41,432    12.9%    11.3%
+  #
+  # Note the optimum sits at LOW precision. That is not a mistake: missing a
+  # real incident forfeits the whole recovery, while a false intervention on a
+  # healthy segment costs only the contact penalty for the customer-contacting
+  # actions. The curve is flat between 4.0 and 7.0, so this is not a knife edge.
+  h: 5.5
+  # The implied false-alarm rate is a CONSEQUENCE of the value-optimal h, not a
+  # target any more. Recorded for reporting only.
+  false_alarms_per_cell_per_48h: 0.35
+  s_cap_multiple: 1.5             # bounded CUSUM, see detector/cusum.py
+  quiet_windows_to_close: 3       # §7.2
+
+incident_merge:                   # §7.2
+  window_minutes: 15
+  quiet_windows: 3
+
+attribution:
+  l1:
+    # Minimum residual log-odds shift for L1's single deviating cell.
+    min_shift_logodds: 0.55
+    # Peers must be within their Wilson band, i.e. CI covering no real shift.
+    peer_band_z: 1.96
+    confidence: 0.9               # §8.1, fixed
+  l2:
+    # A candidate must beat the runner-up by this much on the z scale.
+    # PRE-REGISTERED margin (§8.2 clause 4); below it, return UNKNOWN.
+    winner_margin_z: 1.5
+    # Minimum evidence for any candidate to be considered at all.
+    min_candidate_z: 2.0
+    # A topology candidate must cover at least this many alerting cells (§8.2).
+    min_cells_for_topology_candidate: 2
+    confidence_floor: 0.35
+    confidence_ceiling: 0.85
+
+matching:                         # §12.2
+  min_score: 0.3
+
+bootstrap:                        # §12.4
+  n_resamples: 2000
+  seed: 20260826
+
+seeds:
+  dev_pool: 9000
+  frozen: 20260901

@@ -1,0 +1,349 @@
+# Decline taxonomy and retry schedules.
+#
+# Kill Bill's payment-retries plugin separates two concerns that everyone else
+# conflates: deciding whether an error is RETRYABLE, and deciding WHEN to retry
+# it. This file holds both, but they are read by different functions and tested
+# separately (src/recovery/declines.py vs src/recovery/dunning.py).
+#
+# The `reason` strings below are Razorpay's own, from
+# https://razorpay.com/docs/errors/payments/list/ -- not invented, and not
+# Stripe's vocabulary translated. Every prior-art system in docs/PRIOR_ART.md
+# normalises provider codes at the ingest boundary; this IS our normalisation
+# table, and an unmapped reason is a first-class outcome (UNKNOWN -> reconcile),
+# never a silent default to "retry it".
+#
+# Schedules follow the two-speed pattern that Etherlabs, ajithmanmu and recoup
+# all converge on independently: money problems resolve on the customer's
+# payday, technical problems resolve in hours. Retrying a declined card thirty
+# seconds later fails for the same reason it failed the first time.
+
+policy_version: "dunning-1.0"
+
+# ---------------------------------------------------------------------------
+# CLASSES
+#
+# `retryable: false` means NO automated attempt is ever made against the same
+# instrument. It does not mean we give up -- it means the only useful move is
+# to let the customer fix the instrument themselves (getpaidhq's
+# payment-update token), because the bank has told us this card will not work.
+# ---------------------------------------------------------------------------
+classes:
+
+  HARD_INSTRUMENT:
+    retryable: false
+    schedule: instrument_dead
+    description: >
+      The bank has rejected the instrument itself, not this transaction. Every
+      source in the prior art refuses to retry these. Retrying is not merely
+      useless: repeated declines on a blocked card are what card networks count
+      when they rate a merchant's authorisation quality.
+    reasons:
+      - card_expired
+      - debit_instrument_blocked          # stolen / lost / blocked
+      - card_number_invalid
+      - international_transaction_not_allowed
+
+  SOFT_FUNDS:
+    retryable: true
+    schedule: slow
+    description: >
+      The instrument works; the money was not there at that moment. This is the
+      single most recoverable class in the industry and the reason dunning
+      schedules are measured in days -- the balance changes when the customer
+      is paid, not when we retry.
+    reasons:
+      - insufficient_funds
+      - credit_limit_exceeded
+      - transaction_limit_exceeded
+      - transaction_daily_limit_exceeded
+      - transaction_frequency_limit_exceeded
+
+  SOFT_TECHNICAL:
+    retryable: true
+    schedule: fast
+    description: >
+      Nothing is wrong with the customer or the instrument -- a rail was down.
+      These resolve in hours, and they are the class where our diagnosis layer
+      earns its keep: if attribution says the PSP is degraded, the retry should
+      switch PSP rather than repeat a rail we have measured to be broken.
+    reasons:
+      - bank_technical_error
+      - bank_not_available
+      - issuer_technical_error
+      - bank_cutoff_in_progress
+      - gateway_technical_error
+      - payment_timed_out
+      - upi_app_technical_error
+      - psp_app_not_available
+
+  AUTH:
+    retryable: false
+    schedule: needs_customer
+    description: >
+      OTP and 3DS failures cannot be retried silently by definition -- the
+      customer has to be at the checkout to complete authentication. A
+      server-side re-present would simply fail at the same step. The correct
+      move is to bring the customer back with a fresh link, ideally on a rail
+      that does not require the step that just failed.
+    reasons:
+      - incorrect_otp
+      - otp_expired
+      - otp_attempts_exceeded
+      - authentication_failed
+
+  VPA:
+    retryable: false
+    schedule: needs_customer
+    description: >
+      The UPI address is wrong or restricted. Retrying the same VPA repeats the
+      same lookup failure; the customer must supply a different one.
+    reasons:
+      - invalid_vpa
+      - transaction_on_vpa_restricted
+
+  CUSTOMER_ABORTED:
+    retryable: false
+    schedule: single_nudge
+    description: >
+      The customer closed the window. Nothing failed. This is an abandonment
+      wearing a failure's clothes, and it gets exactly one polite nudge --
+      chasing someone who actively declined is how a sender reputation dies.
+    reasons:
+      - payment_cancelled
+
+  UNKNOWN:
+    retryable: false
+    schedule: reconcile_first
+    description: >
+      Either an unmapped reason, or one Razorpay itself reports generically.
+      recoup's rule applies: on an ambiguous outcome, ask the gateway for the
+      truth rather than acting on a guess. An UNKNOWN never becomes a retry
+      without a reconciliation first -- that is what makes this safe as the
+      default for a reason string we have never seen.
+    reasons:
+      - payment_failed
+      - card_declined
+
+# ---------------------------------------------------------------------------
+# SCHEDULES
+#
+# Each step: how long after the ORIGINAL failure to act, through which channel,
+# and on which rail. `channel: silent` contacts nobody.
+#
+# `requires_mandate: true` marks a step that needs a saved token or an
+# e-mandate to execute server-side. This account has neither, so such steps are
+# recorded as UNEXECUTABLE rather than modelled as though they ran. See
+# docs/PRIOR_ART.md sec 1.8.
+# ---------------------------------------------------------------------------
+schedules:
+
+  fast:
+    # Etherlabs' temporary-processing-failure cadence, 1h/6h/24h, extended with
+    # the contact steps their design carries separately as "notifications".
+    steps:
+      - {after_hours: 1,   channel: silent,                rail: same,      requires_mandate: true}
+      - {after_hours: 6,   channel: payment_link,          rail: alternate}
+      - {after_hours: 24,  channel: alternate_method_link, rail: alternate}
+      - {after_hours: 72,  channel: payment_link,          rail: alternate}
+      - {after_hours: 168, channel: human_review,          rail: none}
+
+  slow:
+    # Etherlabs' insufficient-funds cadence, 48h/120h/168h -- day 2, 5, 7,
+    # bracketing a salary cycle -- with a final contact on day 11.
+    steps:
+      - {after_hours: 48,  channel: silent,                rail: same,      requires_mandate: true}
+      - {after_hours: 120, channel: payment_link,          rail: same}
+      - {after_hours: 168, channel: payment_link,          rail: alternate}
+      - {after_hours: 264, channel: alternate_method_link, rail: alternate}
+      - {after_hours: 336, channel: human_review,          rail: none}
+
+  needs_customer:
+    # No silent step exists. The customer must be present to authenticate, so
+    # the sequence opens on contact and stays there.
+    steps:
+      - {after_hours: 1,   channel: alternate_method_link, rail: alternate}
+      - {after_hours: 48,  channel: alternate_method_link, rail: alternate}
+      - {after_hours: 168, channel: payment_link,          rail: alternate}
+      - {after_hours: 336, channel: human_review,          rail: none}
+
+  instrument_dead:
+    # No retry of any kind. The only route to the money is the customer
+    # replacing the instrument -- getpaidhq's payment-update token.
+    steps:
+      - {after_hours: 1,   channel: payment_update, rail: alternate}
+      - {after_hours: 96,  channel: payment_update, rail: alternate}
+      - {after_hours: 240, channel: payment_update, rail: alternate}
+      - {after_hours: 336, channel: write_off,      rail: none}
+
+  single_nudge:
+    # Deliberately ONE contact, and it stays one. The customer actively closed
+    # the window; a ladder here is not recovery, it is pestering someone who
+    # already answered.
+    steps:
+      - {after_hours: 24,  channel: payment_link, rail: same}
+      - {after_hours: 96,  channel: write_off,    rail: none}
+
+  reconcile_first:
+    # Read the gateway before deciding anything. The reconcile step is not a
+    # recovery attempt and never contacts the customer; it exists so that an
+    # ambiguous outcome cannot be turned into a charge.
+    steps:
+      - {after_hours: 0,   channel: reconcile,             rail: none}
+      - {after_hours: 24,  channel: payment_link,          rail: alternate}
+      - {after_hours: 120, channel: alternate_method_link, rail: alternate}
+      - {after_hours: 240, channel: human_review,          rail: none}
+
+  # Subscription / mandate-backed failures. THE LADDER A MANDATE BUYS.
+  #
+  # Every other schedule here opens on a customer contact, because without
+  # standing consent that is the only move available. A mandate changes the
+  # economics completely: a retry costs nothing, interrupts nobody, and needs no
+  # one's attention, so the cheapest rungs come first and the customer is only
+  # troubled once several free attempts have failed. This is the difference our
+  # own analysis identified as the binding constraint on recovery rate
+  # (docs/RECOVERY_RATE.md) -- not more messages, a mandate.
+  mandate:
+    steps:
+      - {after_hours: 4,   channel: silent,                rail: same,      requires_mandate: true}
+      - {after_hours: 24,  channel: silent,                rail: same,      requires_mandate: true}
+      - {after_hours: 72,  channel: silent,                rail: alternate, requires_mandate: true}
+      - {after_hours: 168, channel: silent,                rail: same,      requires_mandate: true}
+      - {after_hours: 240, channel: payment_update,        rail: alternate}
+      - {after_hours: 336, channel: alternate_method_link, rail: alternate}
+      - {after_hours: 504, channel: human_review,          rail: none}
+
+  # Overdue receivables. An invoice was ISSUED to a customer with payment terms
+  # and the terms have run out. Different from both other streams: nothing
+  # failed, nothing was abandoned, and the customer already owes the money --
+  # so the tone is a reminder rather than a nudge, the horizon is weeks rather
+  # than days, and it ends with a PERSON rather than a write-off. Nobody writes
+  # off a receivable automatically; somebody decides to.
+  overdue:
+    steps:
+      - {after_hours: 0,   channel: payment_link,          rail: same}
+      - {after_hours: 72,  channel: payment_link,          rail: same}
+      - {after_hours: 168, channel: alternate_method_link, rail: alternate}
+      - {after_hours: 336, channel: voice,                 rail: none}
+      - {after_hours: 504, channel: human_review,          rail: none}
+
+  # Checkout abandonment. Nothing failed and there is nothing to re-present, so
+  # every step is customer contact. Shorter than any failure schedule because
+  # purchase intent decays fast -- a cart chased on day 7 is a cold cart.
+  abandoned:
+    steps:
+      - {after_hours: 1,   channel: payment_link,          rail: same}
+      - {after_hours: 24,  channel: alternate_method_link, rail: alternate}
+      - {after_hours: 72,  channel: payment_link,          rail: alternate}
+      - {after_hours: 168, channel: write_off,             rail: none}
+
+# ---------------------------------------------------------------------------
+# COMPLIANCE
+#
+# "Compliant escalation" in the track brief. These are the rules that stop a
+# recovery agent behaving like a debt collector.
+# ---------------------------------------------------------------------------
+compliance:
+  # No customer-contacting step fires inside quiet hours; it defers to the next
+  # permitted hour rather than being dropped. IST, inclusive start, exclusive end.
+  quiet_hours_ist: [22, 8]
+  # Hard ceiling on how many times one customer may be contacted about one
+  # unit of at-risk revenue, across the whole sequence.
+  max_contacts_per_reference: 3
+  # ...and across every sequence for that customer in a rolling day.
+  max_contacts_per_customer_per_day: 2
+  # Defence in depth, independent of the schedule. A sequence opened against a
+  # failure that happened days ago has every early step already "due", so the
+  # schedule alone would fire them in consecutive passes with no gap at all.
+  # This is a floor on ELAPSED REAL TIME since the last attempt, so a backdated
+  # campaign, a clock skew or an over-eager cron cannot turn a 14-day ladder
+  # into three messages in a minute.
+  min_hours_between_attempts: 4
+  # Channels that reach a human. Everything else is silent.
+  contacting_channels:
+    - payment_link
+    - alternate_method_link
+    - payment_update
+    - voice
+  # Terminal channels. Reaching one ends the sequence.
+  terminal_channels:
+    - human_review
+    - write_off
+
+# ---------------------------------------------------------------------------
+# POLICY FLOORS, per workflow
+#
+# THESE NUMBERS ARE NO LONGER HERE, and that is the point.
+#
+# They used to be: Rs 200 / 500 / 1,000 / 1,500, sitting at 2x, 5x, 12x and
+# 750x their own cash break-even. Four unrelated round numbers with prose
+# written after the fact. It took the question "why is 500 the threshold?" to
+# notice that nothing derived any of them, and the honest answer was "I picked
+# it".
+#
+# The floor is now COMPUTED in src/recovery/economics.py as
+#
+#     (cash cost + contacts x price-of-an-interruption) / recovery probability
+#
+# so the only judgement left is what one interruption is worth in goodwill --
+# which lives in workflows.yaml, has a unit, is comparable across workflows,
+# and is something a merchant can argue with. A round floor is none of those.
+#
+# It also makes the floor move CORRECTLY: add a rung to a ladder and the floor
+# rises, because you are now asking the customer for more patience.
+#
+# What survives here is the reasoning behind each price. The number it produces
+# is derived from it, not alongside it.
+# ---------------------------------------------------------------------------
+policy_floors:
+
+  invoice_overdue:
+    reason: >
+      Cheapest interruption of the four, so the lowest floor. They owe the money
+      and agreed the terms; a reminder is the least objectionable message we
+      send, and arguably one they would rather receive than not. Priced at
+      Rs 25 a contact, which over a four-contact ladder puts the floor near
+      Rs 430 -- so a Rs 1,100 invoice is chased, which is right: that is real
+      money to a small business.
+
+  subscription_failure:
+    reason: >
+      Nearly free to run, because the first four rungs are silent retries
+      against a mandate that cost nothing and interrupt nobody. Only two
+      contacts remain, they concern a service the customer is actively
+      subscribed to, and they arrive after the free attempts are spent. Priced
+      at Rs 40 a contact.
+
+  checkout_abandonment:
+    reason: >
+      The dearest interruption, and the highest floor. Nobody asked us to get in
+      touch and they owe nothing, so this is the message most likely to be
+      marked as spam -- and a spam complaint costs deliverability for every
+      FUTURE message, not just this one. Priced at Rs 150 a contact.
+
+  payment_degradation:
+    reason: >
+      The real intervention here is a reroute that nobody sees, so the nuisance
+      argument barely applies; a message is a fallback, and it explains a
+      failure the customer already experienced. Priced at Rs 60 a contact.
+
+# ---------------------------------------------------------------------------
+# STOPPING RULES
+# ---------------------------------------------------------------------------
+stopping:
+  # Fallback for a stream with no workflow of its own. Every real workflow
+  # DERIVES its floor (see policy_floors above and economics.py); this is only
+  # reached by something that has not been given a price for an interruption.
+  min_at_risk_paise: 100000            # Rs 1,000
+  # Absolute cap regardless of schedule length.
+  max_attempts: 7   # the mandate ladder is the longest, at 7 rungs
+  # Nothing may run longer than this from first failure.
+  max_sequence_days: 25  # receivables and mandates run longer than a cart
+  # A sequence stops the instant any of these is observed on the underlying
+  # object. Medusa #16398: a sequence that cannot see a terminal state never
+  # terminates, and keeps escalating at a customer whose payment is already dead.
+  terminal_payment_states:
+    - captured
+    - refunded
+    - paid
+    - cancelled
+    - expired
